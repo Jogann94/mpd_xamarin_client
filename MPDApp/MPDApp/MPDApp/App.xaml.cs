@@ -29,14 +29,25 @@ namespace MPDApp
 		public static void ConnectWithActiveProfile()
 		{
 			var activeProfile = Database.GetActiveProfile().Result;
-
 			var con = MPDConnection.GetInstance();
 
-			con.hostname = activeProfile.Hostname;
-			con.port = activeProfile.Port;
-			con.password = activeProfile.Password;
+			if (activeProfile != null)
+			{
 
-			con.ConnectToServer();
+				con.hostname = activeProfile.Hostname;
+				con.port = activeProfile.Port;
+				con.password = activeProfile.Password;
+
+				con.ConnectToServer();
+			}
+			else
+			{
+				if (con.IsConnected())
+				{
+					con.DisconnectFromServer();
+				}
+			}
+
 			MPDProfileChanged = false;
 		}
 
