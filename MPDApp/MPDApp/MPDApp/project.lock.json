@@ -5065,10 +5065,10 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\malsj\\documents\\visual studio 2017\\Projects\\MPDApp\\MPDApp\\MPDApp\\MPDApp.csproj",
+      "projectUniqueName": "C:\\Users\\malsj\\Desktop\\Git Repos\\mpd_xamarin_client\\MPDApp\\MPDApp\\MPDApp\\MPDApp.csproj",
       "projectName": "MPDApp",
-      "projectPath": "C:\\Users\\malsj\\documents\\visual studio 2017\\Projects\\MPDApp\\MPDApp\\MPDApp\\MPDApp.csproj",
-      "projectJsonPath": "C:\\Users\\malsj\\documents\\visual studio 2017\\Projects\\MPDApp\\MPDApp\\MPDApp\\project.json",
+      "projectPath": "C:\\Users\\malsj\\Desktop\\Git Repos\\mpd_xamarin_client\\MPDApp\\MPDApp\\MPDApp\\MPDApp.csproj",
+      "projectJsonPath": "C:\\Users\\malsj\\Desktop\\Git Repos\\mpd_xamarin_client\\MPDApp\\MPDApp\\MPDApp\\project.json",
       "projectStyle": "ProjectJson"
     },
     "dependencies": {
