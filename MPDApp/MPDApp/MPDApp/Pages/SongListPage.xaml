@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MPDApp.Pages.SongListPage"
+						 Icon="album_white.png"
+						 BackgroundColor="#191e1c"
+						 x:Name="SongListPage"
+						 Disappearing="SongListPage_Disappearing"
+						 Appearing="SongListPage_Appearing"
+						 >
+	<ContentPage.Content>
+		<StackLayout>
+			<Button Text="Play" x:Name="PlayButton" Clicked="PlayButton_Clicked" />
+			<Button Text="Stop" x:Name="StopButton" Clicked="StopButton_Clicked" />
+			<ListView x:Name="SongListView">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c">
+								<Image Source="insert_file_white.png" VerticalOptions="Center"/>
+								<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*"/>
+										<RowDefinition Height="*"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="2*"/>
+										<ColumnDefinition Width="*"/>
+									</Grid.ColumnDefinitions>
+									<Label Text="{Binding TrackTitle}" Grid.Row="0" Grid.Column="0" 
+												 HorizontalOptions="Start" VerticalOptions="Center"
+												 TextColor="White"/>
+									<Label Text="{Binding TrackArtist}" Grid.Row="1" Grid.Column="0" 
+												 HorizontalOptions="Start" VerticalOptions="Center"
+												 TextColor="Gray"/>
+									<Label Text="{Binding DurationString}" Grid.Row="1" Grid.Column="1" 
+												 HorizontalOptions="End" VerticalOptions="Center"
+												 TextColor="White"/>
+								</Grid>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

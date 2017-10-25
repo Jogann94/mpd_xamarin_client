@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MPDApp.Pages.ProfilePage"
+						 Title="Profiles"
+						 BackgroundColor="#191e1c"
+						 Appearing="PageAppearing_Listener"
+						 >
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Icon="add_white.png" Clicked="ToolbarAdd_Clicked"/>
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Content>
+		<StackLayout>
+			<ListView x:Name="ProfileListView" RowHeight="45" 
+								SelectedItem="null"
+								ItemSelected="ProfileListView_ItemSelected"
+								SeparatorColor="White"
+								SeparatorVisibility="Default">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Grid BackgroundColor="#191e1c">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<Label Text="{Binding ProfileName}" TextColor="{Binding LabelColor}" 
+										 VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
+								<Label Text="{Binding Hostname}" TextColor="{Binding LabelColor}" 
+										 VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+								<Label Text="{Binding Port}" TextColor="{Binding LabelColor}" 
+										 VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"/>
+							</Grid>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
+
+</ContentPage>

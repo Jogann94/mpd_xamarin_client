@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MPDApp.Pages.ArtistListPage"
+						 Icon="interpret_white.png"
+						 >
+	<ContentPage.Content>
+		<StackLayout>
+			<Entry Text="{Binding ToSpeak, Mode=TwoWay}" Placeholder="To Speak" TextColor="White"/>
+			<Button Text="Read" x:Name="textToSpeechButton" Clicked="TextToSpeechButton_Clicked"/>
+			<Button Text="Record" x:Name="recordButton" Clicked="RecordButton_Clicked"/>
+			<Label Text="{Binding SpeechInputText}" TextColor="White" />
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MPDApp.Pages.ServerOutputPage"
+						 Icon="hearing_white.png"
+						 BackgroundColor="#191e1c"
+						 >
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Placeholder server outputs" TextColor="White"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

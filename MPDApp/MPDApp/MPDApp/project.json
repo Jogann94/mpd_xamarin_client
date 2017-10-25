@@ -1,0 +1,13 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
+    "NETStandard.Library": "2.0.0",
+    "Newtonsoft.Json": "10.0.3",
+    "sqlite-net-pcl": "1.5.166-beta",
+    "Xamarin.Forms": "2.4.0.275-pre3"
+  },
+  "frameworks": {
+    "netstandard1.4": {}
+  }
+}
