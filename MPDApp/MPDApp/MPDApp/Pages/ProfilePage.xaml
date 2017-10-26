@@ -12,10 +12,8 @@
 
 	<ContentPage.Content>
 		<StackLayout>
-			<ListView x:Name="ProfileListView" RowHeight="45" 
-								SelectedItem="null"
-								ItemSelected="ProfileListView_ItemSelected"
-								SeparatorColor="White"
+			<ListView x:Name="ProfileListView" RowHeight="45" SelectedItem="null"
+								ItemSelected="ProfileListView_ItemSelected" SeparatorColor="White"
 								SeparatorVisibility="Default">
 				<ListView.ItemTemplate>
 					<DataTemplate>

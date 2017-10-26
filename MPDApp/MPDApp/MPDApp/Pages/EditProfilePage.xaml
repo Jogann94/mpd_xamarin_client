@@ -10,25 +10,32 @@
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Icon="check_white.png" Clicked="ToolbarChecked_Clicked"/>
 	</ContentPage.ToolbarItems>
-	<ContentPage.Content>
 
+	<ContentPage.Content>
 		<TableView Intent="Form" RowHeight="40">
 			<TableRoot >
 				<TableSection>
+
 					<ViewCell>
 						<StackLayout Orientation="Horizontal" Spacing="20">
-							<Label Text="Name:" TextColor="Gray" FontSize="Medium" VerticalOptions="Center" WidthRequest="90"/>
-							<Entry Text="{Binding CurrentProfile.ProfileName}" PlaceholderColor="Beige" HorizontalOptions="FillAndExpand"
-										 BackgroundColor="#191e1c" Placeholder="New Profile"/>
+							<Label Text="Name:" TextColor="Gray" FontSize="Medium" VerticalOptions="Center" 
+										 WidthRequest="90"/>
+							<Entry Text="{Binding CurrentProfile.ProfileName}" PlaceholderColor="Beige" 
+										 HorizontalOptions="FillAndExpand" BackgroundColor="#191e1c"
+										 Placeholder="New Profile" />
 						</StackLayout>
 					</ViewCell>
+
 					<ViewCell>
 						<StackLayout Orientation="Horizontal" Spacing="20">
-							<Label Text="Host:" TextColor="Gray" FontSize="Medium" VerticalOptions="Center" WidthRequest="90"/>
-							<Entry Text="{Binding CurrentProfile.Hostname}" PlaceholderColor="Beige" HorizontalOptions="FillAndExpand"
-										 BackgroundColor="#191e1c" Placeholder="Hostname or IP"/>
+							<Label Text="Host:" TextColor="Gray" FontSize="Medium" VerticalOptions="Center"
+										 WidthRequest="90"/>
+							<Entry Text="{Binding CurrentProfile.Hostname}" PlaceholderColor="Beige" 
+										 HorizontalOptions="FillAndExpand" BackgroundColor="#191e1c" 
+										 Placeholder="Hostname or IP"/>
 						</StackLayout>
 					</ViewCell>
+					
 					<ViewCell>
 						<StackLayout Orientation="Horizontal" Spacing="20">
 							<Label Text="Port:" TextColor="Gray" FontSize="Medium" VerticalOptions="Center" WidthRequest="90"/>
@@ -36,6 +43,7 @@
 										 BackgroundColor="#191e1c" Placeholder="6600" Keyboard="Numeric" x:Name="portEntry"/>
 						</StackLayout>
 					</ViewCell>
+					
 					<ViewCell>
 						<StackLayout Orientation="Horizontal" Spacing="20">
 							<Label Text="Password:" TextColor="Gray" FontSize="Medium" VerticalOptions="Center" WidthRequest="90"/>
@@ -43,21 +51,24 @@
 										 BackgroundColor="#191e1c" IsPassword="True"/>
 						</StackLayout>
 					</ViewCell>
+					
 					<ViewCell>
 						<StackLayout Orientation="Horizontal" Spacing="20">
 							<Label Text="Streaming from Server" TextColor="Gray" FontSize="Medium" VerticalOptions="Center"/>
 							<Switch IsEnabled="{Binding CurrentProfile.StreamingEnabled}"/>
 						</StackLayout>
 					</ViewCell>
+					
 					<ViewCell>
 						<StackLayout Orientation="Horizontal" Spacing="20">
 							<Label Text="Rating through Server" TextColor="Gray" FontSize="Medium" VerticalOptions="Center"/>
 							<Switch IsEnabled="{Binding CurrentProfile.RatingEnabled}"/>
 						</StackLayout>
 					</ViewCell>
+					
 				</TableSection>
 			</TableRoot>
 		</TableView>
-
 	</ContentPage.Content>
+	
 </ContentPage>

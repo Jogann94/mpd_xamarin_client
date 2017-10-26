@@ -25,13 +25,6 @@ namespace MPDApp.Pages
 			Navigation.PushAsync(new EditProfilePage());
 		}
 
-		private async void RefreshList()
-		{
-			ProfileList = new ObservableCollection<MPDServerProfile>
-				(await App.Database.GetProfilesAsync());
-			ProfileListView.ItemsSource = ProfileList;
-		}
-
 		private void PageAppearing_Listener(object sender, EventArgs e)
 		{
 			RefreshList();
@@ -53,5 +46,11 @@ namespace MPDApp.Pages
 			App.MPDProfileChanged = true;
 		}
 
+		private async void RefreshList()
+		{
+			ProfileList = new ObservableCollection<MPDServerProfile>
+				(await App.Database.GetProfilesAsync());
+			ProfileListView.ItemsSource = ProfileList;
+		}
 	}
 }

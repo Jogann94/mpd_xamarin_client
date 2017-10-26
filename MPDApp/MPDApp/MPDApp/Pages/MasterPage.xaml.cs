@@ -6,64 +6,57 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using MPDApp.Pages;
+using MPDApp.Models;
 
-namespace MPDApp
+namespace MPDApp.Pages
 {
 	public partial class MasterPage : MasterDetailPage
 	{
-		public ObservableCollection<MenuPageItem> menuList { get; set; }
+		public ObservableCollection<MasterPageItem> menuList { get; set; }
 
 		public int lastSelectedIndex;
 
 		public MasterPage()
 		{
 			InitializeComponent();
-
-			menuList = new ObservableCollection<MenuPageItem>();
-
+			menuList = new ObservableCollection<MasterPageItem>();
 			lastSelectedIndex = 0;
 
 			FillMenuList();
-
 			PageListView.ItemsSource = menuList;
 
 			var startPage = new NavigationPage(new MainPage());
-
 			startPage.BarBackgroundColor = Color.OrangeRed;
-			Detail = startPage;
-			
+			Detail = startPage;		
 		}
 
 		private void FillMenuList()
 		{
-			menuList.Add(new MenuPageItem("Bibliothek", "library_music", typeof(MainPage), true));
-			menuList.Add(new MenuPageItem("Playlists", "queue_music", typeof(PlalistInfoPage), false));
-			menuList.Add(new MenuPageItem("Files", "folder", typeof(FilePage), false));
-			menuList.Add(new MenuPageItem("Search", "search", typeof(SearchPage), false));
-			menuList.Add(new MenuPageItem("Serverproperties", "dvr", typeof(ServerPage), false));
-			menuList.Add(new MenuPageItem("Profiles", "settings_input_antenna", typeof(ProfilePage), false));
-			menuList.Add(new MenuPageItem("Appsettings", "settings", typeof(SettingsPage), false));
+			menuList.Add(new MasterPageItem("Bibliothek", "library_music", typeof(MainPage), true));
+			menuList.Add(new MasterPageItem("Playlists", "queue_music", typeof(PlalistInfoPage), false));
+			menuList.Add(new MasterPageItem("Files", "folder", typeof(FilePage), false));
+			menuList.Add(new MasterPageItem("Search", "search", typeof(SearchPage), false));
+			menuList.Add(new MasterPageItem("Serverproperties", "dvr", typeof(ServerPage), false));
+			menuList.Add(new MasterPageItem("Profiles", "settings_input_antenna", typeof(ProfilePage), false));
+			menuList.Add(new MasterPageItem("Appsettings", "settings", typeof(SettingsPage), false));
 		}
 
 		private void PageListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
-			MenuPageItem selected = e.SelectedItem as MenuPageItem;
+			MasterPageItem selected = e.SelectedItem as MasterPageItem;
 			int selectedListPosition = menuList.IndexOf(selected);
 
 			var lastItem = menuList[lastSelectedIndex];
 
-			menuList[lastSelectedIndex] = new MenuPageItem(lastItem.Title, lastItem.IconNameWithoutColor, lastItem.TargetType, false);
-			menuList[selectedListPosition] = new MenuPageItem(selected.Title, selected.IconNameWithoutColor, selected.TargetType, true);
-
+			menuList[lastSelectedIndex] = new MasterPageItem(lastItem.Title, lastItem.IconNameWithoutColor, lastItem.TargetType, false);
+			menuList[selectedListPosition] = new MasterPageItem(selected.Title, selected.IconNameWithoutColor, selected.TargetType, true);
 			lastSelectedIndex = selectedListPosition;
 
 			var type = selected.TargetType;
 			var nav = Detail as NavigationPage;
 			Detail = CreateNewNavigationPage(Activator.CreateInstance(type) as Page);
 
-			
 			IsPresented = false;
-			
 		}
 
 		private NavigationPage CreateNewNavigationPage(Page p)

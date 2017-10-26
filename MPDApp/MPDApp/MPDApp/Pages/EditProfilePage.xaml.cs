@@ -14,44 +14,51 @@ namespace MPDApp.Pages
 	{
 		public MPDServerProfile CurrentProfile { get; set; }
 
-		public EditProfilePage ()
+		public EditProfilePage()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 			BindingContext = this;
 			CurrentProfile = new MPDServerProfile();
 		}
 
 		private async void ToolbarChecked_Clicked(object sender, EventArgs e)
 		{
-			if (portEntry.Text == null || portEntry.Text == "")
-			{
-				CurrentProfile.Port = 6600;
-			}
-			if(CurrentProfile.Password == null)
-			{
-				CurrentProfile.Password = "";
-			}
-
+			CheckCurrentProfileValues();
 			CurrentProfile.IsActiveProfile = true;
 
 			var activeProfile = await App.Database.GetActiveProfile();
 			if (activeProfile != null)
 			{
 				if (!activeProfile.Equals(CurrentProfile))
-				{
-					activeProfile.IsActiveProfile = false;
-					await App.Database.UpdateProfile(activeProfile);
-					await App.Database.SaveProfileAsync(CurrentProfile);
-					App.ConnectWithActiveProfile();
-				}
+					await SetProfileInactive(activeProfile);
 			}
 			else
-			{				
+			{
 				await App.Database.SaveProfileAsync(CurrentProfile);
 				App.ConnectWithActiveProfile();
 			}
 
 			await Navigation.PopAsync();
+		}
+
+		private void CheckCurrentProfileValues()
+		{
+			if (portEntry.Text == null || portEntry.Text == "")
+			{
+				CurrentProfile.Port = 6600;
+			}
+			if (CurrentProfile.Password == null)
+			{
+				CurrentProfile.Password = "";
+			}
+		}
+
+		private async Task SetProfileInactive(MPDServerProfile p)
+		{
+			p.IsActiveProfile = false;
+			await App.Database.UpdateProfile(p);
+			await App.Database.SaveProfileAsync(CurrentProfile);
+			App.ConnectWithActiveProfile();
 		}
 	}
 }

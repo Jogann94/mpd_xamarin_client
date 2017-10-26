@@ -42,7 +42,7 @@
     <Compile Include="Database\IFileHelper.cs" />
     <Compile Include="Database\ServerProfileDatabase.cs" />
     <Compile Include="DependencyService\ISpeechHelper.cs" />
-    <Compile Include="MenuPageItem.cs" />
+    <Compile Include="Models\MasterPageItem.cs" />
     <Compile Include="mpdprotocol\MPDCapabilities.cs" />
     <Compile Include="mpdprotocol\MPDCommands.cs" />
     <Compile Include="mpdprotocol\MPDConnection.cs" />

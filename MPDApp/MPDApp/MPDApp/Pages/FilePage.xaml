@@ -4,6 +4,7 @@
              x:Class="MPDApp.Pages.FilePage"
 						 Title="Files"
 						 BackgroundColor="#191e1c">
+	
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Icon="search_white.png"/>
 		<ToolbarItem Icon="library_add_white.png" Clicked="AddItem_Clicked"/>
@@ -17,16 +18,20 @@
 					<DataTemplate>
 						<ViewCell>
 							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c">
+								
 								<Image Source="insert_file_white.png" VerticalOptions="Center"/>
 								<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+									
 									<Grid.RowDefinitions>
 										<RowDefinition Height="*"/>
 										<RowDefinition Height="*"/>
 									</Grid.RowDefinitions>
+									
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="2*"/>
 										<ColumnDefinition Width="*"/>
 									</Grid.ColumnDefinitions>
+									
 									<Label Text="{Binding TrackTitle}" Grid.Row="0" Grid.Column="0" 
 												 HorizontalOptions="Start" VerticalOptions="Center"
 												 TextColor="White"/>
@@ -36,7 +41,9 @@
 									<Label Text="{Binding DurationString}" Grid.Row="1" Grid.Column="1" 
 												 HorizontalOptions="End" VerticalOptions="Center"
 												 TextColor="White"/>
+									
 								</Grid>
+								
 							</StackLayout>
 						</ViewCell>
 					</DataTemplate>

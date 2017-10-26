@@ -14,16 +14,41 @@ namespace MPDApp
 	public partial class App : Application
 	{
 		private static ServerProfileDatabase database;
+		public static ServerProfileDatabase Database
+		{
+			get
+			{
+				if (database == null)
+				{
+					database = new ServerProfileDatabase(
+						DependencyService.Get<IFileHelper>().GetLocalFilePath("ServerProfileSQLite.db3"));
+				}
+				return database;
+			}
+		}
+
 		public static bool MPDProfileChanged { get; set; }
 
 		public App()
 		{
 			InitializeComponent();
-			MainPage = new MPDApp.MasterPage();
+			MainPage = new MPDApp.Pages.MasterPage();
 
-			Task t = new Task( () => UpdateMPDConnection());
+			Task t = new Task(() => UpdateMPDConnection());
 			t.Start();
+		}
 
+		public async static void UpdateMPDConnection()
+		{
+			while (true)
+			{
+				if (!MPDConnection.GetInstance().IsConnected() || MPDProfileChanged)
+				{
+					ConnectWithActiveProfile();
+				}
+
+				await Task.Delay(1000);
+			}
 		}
 
 		public static void ConnectWithActiveProfile()
@@ -33,7 +58,6 @@ namespace MPDApp
 
 			if (activeProfile != null)
 			{
-
 				con.hostname = activeProfile.Hostname;
 				con.port = activeProfile.Port;
 				con.password = activeProfile.Password;
@@ -49,32 +73,6 @@ namespace MPDApp
 			}
 
 			MPDProfileChanged = false;
-		}
-
-		public async static void UpdateMPDConnection()
-		{
-			while(true)
-			{
-				if (!MPDConnection.GetInstance().IsConnected() || MPDProfileChanged)
-				{
-					ConnectWithActiveProfile();
-				}
-
-				await Task.Delay(1000);
-			}
-		}
-
-		public static ServerProfileDatabase Database
-		{
-			get
-			{
-				if(database == null)
-				{
-					database = new ServerProfileDatabase(
-						DependencyService.Get<IFileHelper>().GetLocalFilePath("ServerProfileSQLite.db3"));
-				}
-				return database;
-			}
 		}
 
 		protected override void OnStart()

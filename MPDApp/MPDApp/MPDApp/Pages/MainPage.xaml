@@ -2,7 +2,7 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 						 xmlns:local="clr-namespace:MPDApp.Pages"
-             x:Class="MPDApp.MainPage"
+             x:Class="MPDApp.Pages.MainPage"
 						 Title="MPDVoice"
 						 BarBackgroundColor="OrangeRed"
 						 BackgroundColor="#191e1c"				 

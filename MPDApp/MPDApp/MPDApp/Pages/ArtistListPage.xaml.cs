@@ -1,22 +1,22 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MPDApp.Speech;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ApiAiSDK;
-using System.IO;
-using ApiAiSDK.Util;
 using ApiAiSDK.Model;
+
 namespace MPDApp.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ArtistListPage : ContentPage, INotifyPropertyChanged
 	{
 		public string ToSpeak { get; set; }
+		private ApiAi ai;
+		private bool IsRecording { get; set; }
+		private ISpeechHelper speechHelper;
+
 		public string speechInputText;
 		public string SpeechInputText
 		{
@@ -33,10 +33,6 @@ namespace MPDApp.Pages
 				}
 			}
 		}
-
-		private ApiAi ai;
-		private bool IsRecording { get; set; }
-		private ISpeechHelper speechHelper;
 
 		public ArtistListPage()
 		{
@@ -60,7 +56,6 @@ namespace MPDApp.Pages
 				speechHelper.Recorded += RecordedListener;
 				speechHelper.RecordSpeachToText();
 			}
-
 		}
 
 		private async void RecordedListener(string text)
@@ -85,16 +80,12 @@ namespace MPDApp.Pages
 
 		private async void SendToBot_Clicked(object sender, EventArgs e)
 		{
-
 			var response = await SendAIRequest(ToSpeak);
-
 			SpeechInputText = response.Result.Fulfillment.Speech;
-
 		}
 
 		private async Task<AIResponse> SendAIRequest(string text)
 		{
-
 			var response = await Task.Factory.StartNew(() =>
 			{
 				if (ai == null)
@@ -109,6 +100,5 @@ namespace MPDApp.Pages
 
 			return response;
 		}
-
 	}
 }

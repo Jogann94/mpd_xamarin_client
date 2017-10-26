@@ -5,6 +5,7 @@
 						 Icon="interpret_white.png"
 						 >
 	<ContentPage.Content>
+		
 		<StackLayout>
 			<Entry Text="{Binding ToSpeak, Mode=TwoWay}" Placeholder="To Speak" TextColor="White"/>
 			<Button Text="Read" x:Name="textToSpeechButton" Clicked="TextToSpeechButton_Clicked"/>
@@ -12,7 +13,7 @@
 			<Button Text="Send to Bot" x:Name="sendToBot" Clicked="SendToBot_Clicked" />
 
 			<Label Text="{Binding SpeechInputText}" TextColor="White" />
-
 		</StackLayout>
+		
 	</ContentPage.Content>
 </ContentPage>

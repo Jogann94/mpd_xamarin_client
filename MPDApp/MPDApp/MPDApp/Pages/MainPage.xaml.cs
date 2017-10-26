@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MPDApp
+namespace MPDApp.Pages
 {
 	
 	[XamlCompilation(XamlCompilationOptions.Compile)]
