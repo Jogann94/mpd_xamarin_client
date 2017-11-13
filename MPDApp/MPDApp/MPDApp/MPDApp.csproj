@@ -39,8 +39,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Database\IFileHelper.cs" />
-    <Compile Include="Database\ServerProfileDatabase.cs" />
+    <Compile Include="DependencyService\IFileHelper.cs" />
+    <Compile Include="Services\AIRestClient.cs" />
+    <Compile Include="Services\ServerProfileDatabase.cs" />
     <Compile Include="DependencyService\ISpeechHelper.cs" />
     <Compile Include="Models\MasterPageItem.cs" />
     <Compile Include="mpdprotocol\MPDCapabilities.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="mpdprotocol\mpddataobjects\MPDStatistics.cs" />
     <Compile Include="mpdprotocol\mpddataobjects\MPDTrack.cs" />
     <Compile Include="mpdprotocol\MPDResponses.cs" />
-    <Compile Include="Database\MPDServerProfile.cs" />
+    <Compile Include="Models\MPDServerProfile.cs" />
     <Compile Include="Pages\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>

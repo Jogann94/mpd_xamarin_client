@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using MPDApp.Speech;
+using MPDApp.DependencyServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ApiAiSDK;
@@ -90,8 +90,9 @@ namespace MPDApp.Pages
 			{
 				if (ai == null)
 				{
-					var config = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.German);
+					var config = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.English);
 					ai = new ApiAi(config);
+					
 				}
 				var res = ai.TextRequest(text);
 

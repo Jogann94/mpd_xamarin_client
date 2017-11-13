@@ -14,11 +14,10 @@ namespace MPDApp.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FilePage : ContentPage
 	{
-
+		
 		public FilePage()
 		{
 			InitializeComponent();
-
 			Task.Factory.StartNew(GetAllFilesOnServer);
 		}
 

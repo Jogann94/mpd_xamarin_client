@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MPDApp.ProfileManagement;
+using MPDApp.DependencyServices;
+using MPDApp.Models;
 
 namespace MPDApp.Pages
 {

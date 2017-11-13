@@ -1,5 +1,5 @@
 ﻿using Xamarin.Forms;
-using MPDApp.Speech;
+using MPDApp.DependencyServices;
 using System;
 using MPDApp.Droid;
 using Android.Speech.Tts;

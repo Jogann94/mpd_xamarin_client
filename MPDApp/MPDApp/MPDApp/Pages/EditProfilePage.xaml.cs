@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MPDApp.ProfileManagement;
+using MPDApp.Models;
 
 namespace MPDApp.Pages
 {
@@ -55,10 +55,13 @@ namespace MPDApp.Pages
 
 		private async Task SetProfileInactive(MPDServerProfile p)
 		{
+			
 			p.IsActiveProfile = false;
 			await App.Database.UpdateProfile(p);
+
 			await App.Database.SaveProfileAsync(CurrentProfile);
-			App.ConnectWithActiveProfile();
+			//App.ConnectWithActiveProfile();
+
 		}
 	}
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xamarin.Forms;
-using MPDApp.ProfileManagement;
+using MPDApp.DependencyServices;
 using MPDProtocol;
-using MPDProtocol.MPDDataobjects;
-using System.Threading;
+using MPDApp.Services;
 using System.Threading.Tasks;
+using MPDApp.DependencyServices;
 
 namespace MPDApp
 {

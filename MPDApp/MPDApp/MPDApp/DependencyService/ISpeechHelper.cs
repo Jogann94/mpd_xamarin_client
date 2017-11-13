@@ -1,6 +1,6 @@
 ﻿using System; 
 
-namespace MPDApp.Speech
+namespace MPDApp.DependencyServices
 {
 	public interface ISpeechHelper
 	{
