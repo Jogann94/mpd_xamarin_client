@@ -13,104 +13,13 @@ namespace MPDApp.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ArtistListPage : ContentPage, INotifyPropertyChanged
 	{
-		public string ToSpeak { get; set; }
-		private ApiAi ai;
-		private bool IsRecording { get; set; }
-		private ISpeechHelper speechHelper;
-
-		public string speechInputText;
-		public string SpeechInputText
-		{
-			get
-			{
-				return speechInputText;
-			}
-			set
-			{
-				if (speechInputText != value)
-				{
-					speechInputText = value;
-					OnPropertyChanged("SpeechInputText");
-				}
-			}
-		}
 
 		public ArtistListPage()
 		{
 			InitializeComponent();
-			speechHelper = DependencyService.Get<ISpeechHelper>();
-			SpeechInputText = "Test";
 
 			BindingContext = this;
 		}
 
-		private void TextToSpeechButton_Clicked(object sender, EventArgs e)
-		{
-			speechHelper.TextToSpeach(ToSpeak);
-		}
-
-		private void RecordButton_Clicked(object sender, EventArgs e)
-		{
-			if (!IsRecording)
-			{
-				IsRecording = true;
-				speechHelper.Recorded += RecordedListener;
-				speechHelper.RecordSpeachToText();
-			}
-		}
-
-		private async void RecordedListener(string text)
-		{
-			speechHelper.Recorded -= RecordedListener;
-			IsRecording = false;
-			System.Diagnostics.Debug.WriteLine(text);
-			if (text != string.Empty && text != null)
-			{
-				var response = await SendAIRequest(text);
-
-				if (response != null)
-				{
-					AIFullfillment fullfillment = new AIFullfillment(response);
-					fullfillment.OnActionFullfilled += SpeechOutput;
-				}
-
-			}
-		}
-
-		private void SpeechOutput(string text)
-		{
-			Device.BeginInvokeOnMainThread(
-				() => SpeechInputText = text);
-
-			speechHelper.TextToSpeach(text);
-		}
-
-		private async void SendToBot_Clicked(object sender, EventArgs e)
-		{
-			var response = await SendAIRequest(ToSpeak);
-			var fullfillment = new AIFullfillment(response);
-			fullfillment.OnActionFullfilled += SpeechOutput;
-			fullfillment.FullfillAIResponse();
-
-			SpeechInputText = response.Result.Fulfillment.Speech;
-		}
-
-		private async Task<AIResponse> SendAIRequest(string text)
-		{
-			var response = await Task.Factory.StartNew(() =>
-			{
-				if (ai == null)
-				{
-					var config = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.English);
-					ai = new ApiAi(config);
-					
-				}
-				var res = ai.TextRequest(text);
-
-				return res;
-			});
-
-			return response;
-		}
 	}
 }

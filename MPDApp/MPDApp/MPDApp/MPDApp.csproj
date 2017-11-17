@@ -40,6 +40,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DependencyService\IFileHelper.cs" />
+    <Compile Include="Pages\SpeechPage.xaml.cs">
+      <DependentUpon>SpeechPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\AIFullfillment.cs" />
     <Compile Include="Services\AIRestClient.cs" />
     <Compile Include="Services\ServerProfileDatabase.cs" />
@@ -190,6 +193,12 @@
     <Reference Include="ApiAiSDK">
       <HintPath>.\ApiAiSDK.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SpeechPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

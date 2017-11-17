@@ -39,6 +39,7 @@ namespace MPDApp.Pages
 			menuList.Add(new MasterPageItem("Serverproperties", "dvr", typeof(ServerPage), false));
 			menuList.Add(new MasterPageItem("Profiles", "settings_input_antenna", typeof(ProfilePage), false));
 			menuList.Add(new MasterPageItem("Appsettings", "settings", typeof(SettingsPage), false));
+			menuList.Add(new MasterPageItem("Voice Control", "voice", typeof(SpeechPage), false));
 		}
 
 		private void PageListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MPDApp.Pages.SpeechPage"
+						 BackgroundColor="#191e1c"
+						 Title="Voice Controll"
+						 >
+	<ContentPage.Content>
+		<Grid RowSpacing="10" Padding="10, 10, 10, 10">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="6*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="2*"/>
+			</Grid.ColumnDefinitions>
+			<Button Image="voice_blue.png" Grid.Row="0" Grid.Column="0" x:Name="RecordButton"
+							Clicked="RecordButton_Clicked" Grid.ColumnSpan="2"/>
+			<Label Text="Recognized Text:" TextColor="White" HorizontalOptions="Start"
+						 VerticalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+			<Label Text="Response Text:" TextColor="White" HorizontalOptions="Start"
+						 VerticalOptions="Center" Grid.Row="2" Grid.Column="0"/>
+			<Label Text="{Binding SpeechInput}" Grid.Row="1" Grid.Column="1"
+						 VerticalOptions="Center" HorizontalOptions="Start"
+						 TextColor="White"/>
+			<Label Text="{Binding ResponseText}" Grid.Row="1" Grid.Column="1"
+						 VerticalOptions="Center" HorizontalOptions="Start"
+						 TextColor="White"/>
+
+		</Grid>
+
+	</ContentPage.Content>
+</ContentPage>

@@ -7,7 +7,7 @@ using MPDApp.DependencyServices;
 using MPDProtocol;
 using MPDApp.Services;
 using System.Threading.Tasks;
-using MPDApp.DependencyServices;
+using ApiAiSDK;
 
 namespace MPDApp
 {
@@ -28,12 +28,13 @@ namespace MPDApp
 		}
 
 		public static bool MPDProfileChanged { get; set; }
+		public static AIConfiguration AIConfig { get; private set; }
 
 		public App()
 		{
 			InitializeComponent();
-			MainPage = new MPDApp.Pages.MasterPage();
-
+			MainPage = new Pages.MasterPage();
+			AIConfig = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.English);
 			Task t = new Task(() => UpdateMPDConnection());
 			t.Start();
 		}
