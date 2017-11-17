@@ -40,6 +40,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DependencyService\IFileHelper.cs" />
+    <Compile Include="Services\AIFullfillment.cs" />
     <Compile Include="Services\AIRestClient.cs" />
     <Compile Include="Services\ServerProfileDatabase.cs" />
     <Compile Include="DependencyService\ISpeechHelper.cs" />

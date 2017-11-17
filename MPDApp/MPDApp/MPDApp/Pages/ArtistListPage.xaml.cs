@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ApiAiSDK;
 using ApiAiSDK.Model;
+using MPDApp.Services;
 
 namespace MPDApp.Pages
 {
@@ -62,25 +63,35 @@ namespace MPDApp.Pages
 		{
 			speechHelper.Recorded -= RecordedListener;
 			IsRecording = false;
-
+			System.Diagnostics.Debug.WriteLine(text);
 			if (text != string.Empty && text != null)
 			{
 				var response = await SendAIRequest(text);
 
 				if (response != null)
 				{
-					Device.BeginInvokeOnMainThread(
-						() => SpeechInputText = response.Result.Fulfillment.Speech);
-
-					speechHelper.TextToSpeach(response.Result.Fulfillment.Speech);
+					AIFullfillment fullfillment = new AIFullfillment(response);
+					fullfillment.OnActionFullfilled += SpeechOutput;
 				}
 
 			}
 		}
 
+		private void SpeechOutput(string text)
+		{
+			Device.BeginInvokeOnMainThread(
+				() => SpeechInputText = text);
+
+			speechHelper.TextToSpeach(text);
+		}
+
 		private async void SendToBot_Clicked(object sender, EventArgs e)
 		{
 			var response = await SendAIRequest(ToSpeak);
+			var fullfillment = new AIFullfillment(response);
+			fullfillment.OnActionFullfilled += SpeechOutput;
+			fullfillment.FullfillAIResponse();
+
 			SpeechInputText = response.Result.Fulfillment.Speech;
 		}
 
