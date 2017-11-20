@@ -4,11 +4,24 @@
              x:Class="MPDApp.Pages.ArtistListPage"
 						 Icon="interpret_white.png"
 						 >
-	<ContentPage.Content>
 
+	<ContentPage.Content>
 		<StackLayout>
-			<Label Text="Placeholder for Artists" TextColor="White" />
+			<ListView x:Name="ArtistListView" ItemSelected="ArtistListView_ItemSelected">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c">
+								<Image Source="app_logo.png" VerticalOptions="Center"/>
+								<Label VerticalOptions="Center" TextColor="White" Text="{Binding ArtistName}"/>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
 		</StackLayout>
-		
 	</ContentPage.Content>
+
+
+
 </ContentPage>

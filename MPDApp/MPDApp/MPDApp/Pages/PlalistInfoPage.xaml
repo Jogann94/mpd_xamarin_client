@@ -6,8 +6,19 @@
 						 BackgroundColor="#191e1c"
 						 >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Placeholder for Playlists" TextColor="White" />
-        </StackLayout>
+		<StackLayout>
+			<ListView x:Name="PlaylistView" ItemSelected="PlaylistView_ItemSelected">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c">
+								<Image Source="app_logo.png" VerticalOptions="Center"/>
+								<Label VerticalOptions="Center" TextColor="White" Text="{Binding Name}"/>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
     </ContentPage.Content>
 </ContentPage>

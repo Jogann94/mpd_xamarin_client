@@ -12,6 +12,6 @@
 	</TabbedPage.ToolbarItems>
 	
 	<local:ArtistListPage/>
-	<local:SongListPage/>
+	<local:CurrentPlaylistPage/>
 	
 </TabbedPage>

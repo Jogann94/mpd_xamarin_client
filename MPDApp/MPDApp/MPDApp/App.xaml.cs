@@ -13,6 +13,8 @@ namespace MPDApp
 {
 	public partial class App : Application
 	{
+		public const int PAGE_ANIMATION_DELAY = 400;
+
 		private static ServerProfileDatabase database;
 		public static ServerProfileDatabase Database
 		{

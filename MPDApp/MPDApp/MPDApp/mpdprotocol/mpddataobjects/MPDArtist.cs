@@ -8,7 +8,7 @@ namespace MPDProtocol.MPDDataobjects
 {
 	public class MPDArtist : MPDGenericItem, IComparable<MPDArtist>
 	{
-		public string artistName { get; private set; }
+		public string ArtistName { get; set; }
 		private bool imageFetching;
 
 		private List<string> musicbrainzIDs;
@@ -17,7 +17,7 @@ namespace MPDProtocol.MPDDataobjects
 
 		public MPDArtist(String name)
 		{
-			artistName = name;
+			ArtistName = name;
 			musicbrainzIDs = new List<string>();
 		}
 
@@ -38,7 +38,7 @@ namespace MPDProtocol.MPDDataobjects
 
 		public string getSectionTitle()
 		{
-			return artistName;
+			return ArtistName;
 		}
 
 		public override bool Equals(object obj)
@@ -65,7 +65,7 @@ namespace MPDProtocol.MPDDataobjects
 
 		private bool EqualNameAndIDCount(MPDArtist other)
 		{
-			return artistName.Equals(other.artistName) && musicbrainzIDs.Count != other.musicbrainzIDs.Count;
+			return ArtistName.Equals(other.ArtistName) && musicbrainzIDs.Count != other.musicbrainzIDs.Count;
 		}
 
 		private bool EqualIDs(MPDArtist other)
@@ -84,7 +84,7 @@ namespace MPDProtocol.MPDDataobjects
 		public override int GetHashCode()
 		{
 			int hash = 13;
-			hash = (hash * 7) + (!Object.ReferenceEquals(null, artistName) ? artistName.GetHashCode() : 0);
+			hash = (hash * 7) + (!Object.ReferenceEquals(null, ArtistName) ? ArtistName.GetHashCode() : 0);
 			hash = (hash * 7) + (!Object.ReferenceEquals(null, musicbrainzIDs) ? musicbrainzIDs.GetHashCode() : 0);
 
 			foreach (var id in musicbrainzIDs)
@@ -101,7 +101,7 @@ namespace MPDProtocol.MPDDataobjects
 				return 0;
 			}
 
-			if (other.artistName.ToLower().Equals(artistName.ToLower()))
+			if (other.ArtistName.ToLower().Equals(ArtistName.ToLower()))
 			{
 				if ((other.musicbrainzIDs.Count > musicbrainzIDs.Count) || other.musicbrainzIDs.Count == 1)
 				{
@@ -117,7 +117,7 @@ namespace MPDProtocol.MPDDataobjects
 				}
 			}
 
-			return String.Compare(artistName.ToLower(), other.artistName.ToLower());
+			return String.Compare(ArtistName.ToLower(), other.ArtistName.ToLower());
 		}
 
 		public void setFetching(bool fetching)

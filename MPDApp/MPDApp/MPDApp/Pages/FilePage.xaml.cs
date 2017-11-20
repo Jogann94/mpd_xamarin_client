@@ -14,11 +14,15 @@ namespace MPDApp.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FilePage : ContentPage
 	{
-		
+
 		public FilePage()
 		{
 			InitializeComponent();
-			Task.Factory.StartNew(GetAllFilesOnServer);
+			Task t = Task.Factory.StartNew(async () =>
+			{
+				await Task.Delay(App.PAGE_ANIMATION_DELAY);
+				GetAllFilesFromMPD();
+			});
 		}
 
 		private async void AddItem_Clicked(object sender, EventArgs e)
@@ -37,24 +41,30 @@ namespace MPDApp.Pages
 			});
 		}
 
-		private async void GetAllFilesOnServer()
+		private async void GetAllFilesFromMPD()
 		{
-			await Task.Delay(200);
-			await Task.Factory.StartNew(() =>
+			var con = MPDConnection.GetInstance();
+			while (!con.IsConnected())
 			{
-				var con = MPDConnection.GetInstance();
-				var files = con.GetAllTracks();
-				var trackList = new List<MPDTrack>();
-				foreach (var file in files)
-				{
-					if (file is MPDTrack)
-						trackList.Add(file as MPDTrack);
-				}
+				await Task.Delay(200);
+				con = MPDConnection.GetInstance();
+			}
+
+			var files = con.GetAllTracks();
+			var trackList = new List<MPDTrack>();
+			foreach (var file in files)
+			{
+				if (file is MPDTrack)
+					trackList.Add(file as MPDTrack);
+			}
+
+			if (trackList.Count > 0)
+			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
 					FileListView.ItemsSource = trackList;
 				});
-			});
+			}
 		}
 	}
 }

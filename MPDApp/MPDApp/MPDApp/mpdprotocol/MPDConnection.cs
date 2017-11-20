@@ -945,7 +945,7 @@ namespace MPDProtocol
 					if (i + 1 != artistList.Count)
 					{
 						MPDArtist nextArtist = artistList[i + 1];
-						if (!artist.artistName.Equals(nextArtist.artistName))
+						if (!artist.ArtistName.Equals(nextArtist.ArtistName))
 						{
 							clearedList.Add(artist);
 						}
@@ -1347,7 +1347,7 @@ namespace MPDProtocol
 				{
 					// Remove first empty artist
 					List<MPDArtist> artists = ParseMPDArtists();
-					if (artists.Count > 0 && artists[0].artistName.Equals(""))
+					if (artists.Count > 0 && artists[0].ArtistName.Equals(""))
 					{
 						artists.RemoveAt(0);
 					}
@@ -1376,7 +1376,7 @@ namespace MPDProtocol
 				try
 				{
 					List<MPDArtist> artists = ParseMPDArtists();
-					if (artists.Count > 0 && artists[0].artistName.Equals(""))
+					if (artists.Count > 0 && artists[0].ArtistName.Equals(""))
 					{
 						artists.RemoveAt(0);
 					}

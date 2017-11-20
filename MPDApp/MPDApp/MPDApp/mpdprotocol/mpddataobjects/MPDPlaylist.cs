@@ -28,6 +28,12 @@ namespace MPDProtocol.MPDDataobjects
 	{
 		public MPDPlaylist(String path) : base(path) { }
 
+		public string Name
+		{
+			get { return Path.Substring(Path.LastIndexOf('/') + 1);  }
+			private set { }
+		}
+
 		public override String getSectionTitle()
 		{
 			return Path;
