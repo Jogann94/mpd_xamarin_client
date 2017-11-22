@@ -47,7 +47,7 @@ namespace MPDApp.Droid
 
 				voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
 
-				var activity = Forms.Context as MainActivity;
+				var activity =  MainActivity.Instance;
 				activity.SpeechActivityResult += OnActivityResult;
 				activity.StartActivityForResult(voiceIntent, VOICE);
 			}
@@ -63,7 +63,7 @@ namespace MPDApp.Droid
 			}
 			else
 			{
-				var alert = new AlertDialog.Builder(Forms.Context);
+				var alert = new AlertDialog.Builder(MainActivity.Instance);
 				alert.SetTitle("You have no rights to use the microphone");
 				alert.SetPositiveButton("OK", (sender, e) =>
 				{
@@ -80,7 +80,7 @@ namespace MPDApp.Droid
 
 			if (speaker == null)
 			{
-				speaker = new TextToSpeech(Forms.Context, this);
+				speaker = new TextToSpeech(MainActivity.Instance, this);
 			}
 			else
 			{
@@ -104,7 +104,7 @@ namespace MPDApp.Droid
 				}
 
 				Recorded?.Invoke(text);
-				var activity = Forms.Context as MainActivity;
+				var activity = MainActivity.Instance;
 				activity.SpeechActivityResult -= OnActivityResult;
 			}
 		}

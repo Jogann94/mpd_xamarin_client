@@ -14,6 +14,7 @@ namespace MPDApp.Droid
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		public event Action<Result, Intent> SpeechActivityResult;
+		internal static MainActivity Instance { get; private set; }
 
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -24,7 +25,8 @@ namespace MPDApp.Droid
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 			LoadApplication(new App());
-			
+
+			Instance = this;
 			Window.SetStatusBarColor(Android.Graphics.Color.OrangeRed);
 		}
 

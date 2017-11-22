@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SQLite;
+using System.Data.SqlTypes;
 using MPDApp.Models;
+using SQLite;
 
 namespace MPDApp.Services
 {
@@ -14,6 +15,7 @@ namespace MPDApp.Services
 		public ServerProfileDatabase(string dbPath)
 		{
 			database = new SQLiteAsyncConnection(dbPath);
+			
 			database.CreateTableAsync<MPDServerProfile>().Wait();
 		}
 
