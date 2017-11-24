@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+						 xmlns:controls="clr-namespace:MPDApp.Controls"
              x:Class="MPDApp.Pages.ArtistListPage"
 						 Icon="interpret_white.png"
 						 >
 
 	<ContentPage.Content>
 		<StackLayout>
+			<controls:Toggle IsChecked="true"/>
 			<ListView x:Name="ArtistListView" ItemSelected="ArtistListView_ItemSelected">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
-							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c">
+							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c" HeightRequest="40">
 								<Image Source="app_logo.png" VerticalOptions="Center"/>
 								<Label VerticalOptions="Center" TextColor="White" Text="{Binding ArtistName}"/>
 							</StackLayout>
@@ -21,7 +23,5 @@
 			</ListView>
 		</StackLayout>
 	</ContentPage.Content>
-
-
 
 </ContentPage>

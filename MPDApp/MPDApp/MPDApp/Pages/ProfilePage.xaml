@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+						 xmlns:controls="clr-namespace:MPDApp.Controls"
              x:Class="MPDApp.Pages.ProfilePage"
 						 Title="Profiles"
 						 BackgroundColor="#191e1c"
@@ -24,6 +25,7 @@
 									<ColumnDefinition Width="*"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
+								<controls:Toggle IsChecked="{Binding IsActiveProfile}" />
 								<Label Text="{Binding ProfileName}" TextColor="{Binding LabelColor}" 
 										 VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
 								<Label Text="{Binding Hostname}" TextColor="{Binding LabelColor}" 

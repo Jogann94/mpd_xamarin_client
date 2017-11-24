@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
 using MPDProtocol;
 using MPDProtocol.MPDDataobjects;
+using ApiAiSDK;
 
 namespace MPDApp.Pages
 {
@@ -25,6 +26,7 @@ namespace MPDApp.Pages
 				GetArtistsFromMPD();
 			});
 			BindingContext = this;
+
 		}
 
 		public async void GetArtistsFromMPD()
@@ -40,10 +42,9 @@ namespace MPDApp.Pages
 			if (artists != null && artists.Count > 0)
 			{
 				Device.BeginInvokeOnMainThread(() =>
-			 {
-				 ArtistListView.ItemsSource = artists;
-			 });
-
+				{
+					ArtistListView.ItemsSource = artists;
+				});
 			}
 		}
 
@@ -53,6 +54,5 @@ namespace MPDApp.Pages
 			Navigation.PushAsync(new SongListPage(a.ArtistName,
 				MPDCommands.MPD_SEARCH_TYPE.MPD_SEARCH_ARTIST));
 		}
-
 	}
 }

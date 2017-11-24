@@ -34,9 +34,9 @@ namespace MPDApp
 
 		public App()
 		{
+			AIConfig = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.English);
 			InitializeComponent();
 			MainPage = new Pages.MasterPage();
-			AIConfig = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.English);
 			Task t = new Task(() => UpdateMPDConnection());
 			t.Start();
 		}
