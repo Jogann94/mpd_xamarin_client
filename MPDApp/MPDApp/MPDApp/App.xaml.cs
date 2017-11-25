@@ -22,8 +22,16 @@ namespace MPDApp
 			{
 				if (database == null)
 				{
-					database = new ServerProfileDatabase(
-						DependencyService.Get<IFileHelper>().GetLocalFilePath("ServerProfileSQLite.db3"));
+					try
+					{
+						database = new ServerProfileDatabase(
+							DependencyService.Get<IFileHelper>().GetLocalFilePath("ServerProfileSQLite.db3"));
+					}
+					catch
+					{
+						System.Diagnostics.Debug.WriteLine("No Database Class implemented");
+					}
+
 				}
 				return database;
 			}
@@ -56,6 +64,11 @@ namespace MPDApp
 
 		public static void ConnectWithActiveProfile()
 		{
+			if (Database == null)
+			{
+				return;
+			}
+
 			var activeProfile = Database.GetActiveProfile().Result;
 			var con = MPDConnection.GetInstance();
 

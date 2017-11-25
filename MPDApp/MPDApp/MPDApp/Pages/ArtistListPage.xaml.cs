@@ -19,6 +19,12 @@ namespace MPDApp.Pages
 		public ArtistListPage()
 		{
 			InitializeComponent();
+			switch (Device.RuntimePlatform)
+			{
+				case "UWP":
+					Title = "Artists";
+					break;
+			}
 
 			Task t = Task.Factory.StartNew(async () =>
 			{
@@ -48,10 +54,10 @@ namespace MPDApp.Pages
 			}
 		}
 
-		private void ArtistListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+		private async void ArtistListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
 			MPDArtist a = e.SelectedItem as MPDArtist;
-			Navigation.PushAsync(new SongListPage(a.ArtistName,
+			await Navigation.PushAsync(new SongListPage(a.ArtistName,
 				MPDCommands.MPD_SEARCH_TYPE.MPD_SEARCH_ARTIST));
 		}
 	}

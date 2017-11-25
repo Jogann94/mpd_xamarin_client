@@ -7,7 +7,7 @@
 									>
 
 	<MasterDetailPage.Master>
-		<ContentPage Title="Master">
+		<ContentPage Title="Master" BackgroundColor="#191e1c">
 
 			<StackLayout Orientation="Vertical" BackgroundColor="#191e1c">
 				<AbsoluteLayout HeightRequest="150">

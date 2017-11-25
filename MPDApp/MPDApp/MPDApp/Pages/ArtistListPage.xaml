@@ -8,7 +8,6 @@
 
 	<ContentPage.Content>
 		<StackLayout>
-			<controls:Toggle IsChecked="true"/>
 			<ListView x:Name="ArtistListView" ItemSelected="ArtistListView_ItemSelected">
 				<ListView.ItemTemplate>
 					<DataTemplate>

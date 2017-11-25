@@ -16,7 +16,7 @@
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
-							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c">
+							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c" HeightRequest="40">
 								<Image Source="insert_file_white.png" VerticalOptions="Center"/>
 								<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 									<Grid.RowDefinitions>

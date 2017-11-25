@@ -51,7 +51,7 @@ namespace MPDApp.Pages
 
 		private void RecordButton_Clicked(object sender, EventArgs e)
 		{
-			if (isRecording)
+			if (!isRecording)
 			{
 				if(speechHelper == null)
 				{
@@ -81,6 +81,7 @@ namespace MPDApp.Pages
 				{
 					AIFullfillment fullfillment = new AIFullfillment(response);
 					fullfillment.OnActionFullfilled += SpeechOutput;
+					fullfillment.FullfillAIResponse();
 				}
 			}
 			else

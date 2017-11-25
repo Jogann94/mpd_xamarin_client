@@ -22,6 +22,12 @@ namespace MPDApp.Pages
 		public CurrentPlaylistPage()
 		{
 			InitializeComponent();
+			switch (Device.RuntimePlatform)
+			{
+				case "UWP":
+					Title = "Playlist";
+					break;
+			}
 		}
 
 		private void PlayButton_Clicked(object sender, EventArgs e)
