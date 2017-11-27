@@ -40,6 +40,7 @@ namespace MPDApp.Pages
 			menuList.Add(new MasterPageItem("Profiles", "settings_input_antenna", typeof(ProfilePage), false));
 			menuList.Add(new MasterPageItem("Appsettings", "settings", typeof(SettingsPage), false));
 			menuList.Add(new MasterPageItem("Voice Control", "voice", typeof(SpeechPage), false));
+			menuList.Add(new MasterPageItem("Play", "play_arrow", typeof(PlaybackPage), false));
 		}
 
 		private void PageListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

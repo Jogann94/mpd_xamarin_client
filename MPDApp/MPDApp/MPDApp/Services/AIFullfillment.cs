@@ -67,6 +67,10 @@ namespace MPDApp.Services
 			{
 				FullfillSkipAction();
 			}
+			else if (action == "music.stop")
+			{
+				FullfillStopAction();
+			}
 
 		}
 
@@ -157,6 +161,12 @@ namespace MPDApp.Services
 		private void FullfillResumeAction()
 		{
 			con.Pause(false);
+			OnActionFullfilled?.Invoke(response.Result.Fulfillment.Speech);
+		}
+
+		private void FullfillStopAction()
+		{
+			con.StopPlayback();
 			OnActionFullfilled?.Invoke(response.Result.Fulfillment.Speech);
 		}
 

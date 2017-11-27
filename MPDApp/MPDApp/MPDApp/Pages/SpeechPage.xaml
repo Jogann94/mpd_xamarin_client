@@ -25,7 +25,7 @@
 			<Label Text="{Binding SpeechInput}" Grid.Row="1" Grid.Column="1"
 						 VerticalOptions="Center" HorizontalOptions="Start"
 						 TextColor="White"/>
-			<Label Text="{Binding ResponseText}" Grid.Row="1" Grid.Column="1"
+			<Label Text="{Binding ResponseText}" Grid.Row="2" Grid.Column="1"
 						 VerticalOptions="Center" HorizontalOptions="Start"
 						 TextColor="White"/>
 
