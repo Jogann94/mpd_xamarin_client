@@ -43,6 +43,10 @@ namespace MPDApp.Pages
 
 		private void CheckCurrentProfileValues()
 		{
+			if (CurrentProfile.ProfileName == null || CurrentProfile.ProfileName == "")
+			{
+				CurrentProfile.ProfileName = "New Profile";
+			}
 			if (portEntry.Text == null || portEntry.Text == "")
 			{
 				CurrentProfile.Port = 6600;

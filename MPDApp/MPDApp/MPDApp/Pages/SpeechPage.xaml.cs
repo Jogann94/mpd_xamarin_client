@@ -18,7 +18,7 @@ namespace MPDApp.Pages
 		private string speechInput;
 		public string SpeechInput
 		{
-			get { return responseText; }
+			get { return speechInput; }
 			set
 			{
 				OnPropertyChanged("SpeechInput");
