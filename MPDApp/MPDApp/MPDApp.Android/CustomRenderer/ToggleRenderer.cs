@@ -41,6 +41,7 @@ namespace MPDApp.Droid.CustomRenderer
 			{
 				e.NewElement.PropertyChanged -= TogglePropertyChanged;
 				Control.Checked = e.NewElement.IsChecked;
+				Control.Clickable = e.NewElement.IsClickable;
 			}
 		}
 

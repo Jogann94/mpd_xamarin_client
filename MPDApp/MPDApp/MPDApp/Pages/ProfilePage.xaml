@@ -25,7 +25,7 @@
 									<ColumnDefinition Width="*"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<controls:Toggle IsChecked="{Binding IsActiveProfile}" />
+								<controls:Toggle IsChecked="{Binding IsActiveProfile}" IsClickable="False"/>
 								<Label Text="{Binding ProfileName}" TextColor="{Binding LabelColor}" 
 										 VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"/>
 								<Label Text="{Binding Hostname}" TextColor="{Binding LabelColor}" 
