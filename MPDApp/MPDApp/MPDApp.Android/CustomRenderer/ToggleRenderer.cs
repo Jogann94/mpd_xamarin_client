@@ -35,11 +35,9 @@ namespace MPDApp.Droid.CustomRenderer
 			}
 			if(e.OldElement != null)
 			{
-				e.OldElement.PropertyChanged -= TogglePropertyChanged;
 			}
 			if (e.NewElement != null)
 			{
-				e.NewElement.PropertyChanged -= TogglePropertyChanged;
 				Control.Checked = e.NewElement.IsChecked;
 				Control.Clickable = e.NewElement.IsClickable;
 			}
@@ -52,7 +50,6 @@ namespace MPDApp.Droid.CustomRenderer
 				Control.Checked = Element.IsChecked;
 			}
 		}
-
 
 	}
 }

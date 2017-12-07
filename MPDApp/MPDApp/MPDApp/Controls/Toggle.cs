@@ -17,10 +17,13 @@ namespace MPDApp.Controls
 			set { SetValue(IsCheckedProperty, value); }
 		}
 
+		public bool asdf;
+
 		public bool IsClickable
 		{
 			get { return (bool)GetValue(IsClickableProperty); }
 			set { SetValue(IsClickableProperty, value); }
 		}
+
 	}
 }
