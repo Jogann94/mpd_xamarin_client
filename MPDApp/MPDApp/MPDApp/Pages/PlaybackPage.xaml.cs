@@ -59,6 +59,17 @@ namespace MPDApp.Pages
 			}
 		}
 
+		private string volumeImageSource;
+		public string VolumeImagesource
+		{
+			get { return volumeImageSource; }
+			set
+			{
+				OnPropertyChanged("VolumeImageSource");
+				volumeImageSource = value;
+			}
+		}
+
 		private CancellationTokenSource tokenSource = new CancellationTokenSource();
 
 		public PlaybackPage()
@@ -104,31 +115,32 @@ namespace MPDApp.Pages
 				if (con.IsConnected())
 				{
 					Status = con.GetCurrentServerStatus();
-					con.GetCurrentSong();
+					CurrentSong = con.GetCurrentSong();
 				}
-				
+
 				Device.BeginInvokeOnMainThread(SetUpdatedValues);
 			}
 		}
 
 		private void SetUpdatedValues()
 		{
-			if( Status != null )
+			if (Status != null)
 			{
 				string imageSource = (status.Repeat == 1) ? "repeat_blue.png" : "repeat_white.png";
-				if(RepeatImageSource != imageSource )
+				if (RepeatImageSource != imageSource)
 				{
 					RepeatImageSource = imageSource;
 				}
 
 				imageSource = (status.Random == 1) ? "shuffle_blue.png" : "shuffle_white.png";
-				if(ShuffleImageSource != imageSource)
+				if (ShuffleImageSource != imageSource)
 				{
 					ShuffleImageSource = imageSource;
 				}
-				
+
+				System.Diagnostics.Debug.WriteLine(Status.Volume);
 			}
-			
+
 		}
 
 		public ICommand Repeat_Clicked
@@ -187,9 +199,9 @@ namespace MPDApp.Pages
 			{
 				return new Command(() =>
 				{
-						var con = MPDConnection.GetInstance();
-						if (con.IsConnected())
-							con.StopPlayback();
+					var con = MPDConnection.GetInstance();
+					if (con.IsConnected())
+						con.StopPlayback();
 				});
 			}
 		}

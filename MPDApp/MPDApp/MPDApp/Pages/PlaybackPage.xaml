@@ -16,7 +16,7 @@
 			<StackLayout Grid.Row="0">
 				<Label Text="{Binding CurrentSong.TrackTitle }" HorizontalOptions="CenterAndExpand" 
 							 VerticalOptions="Center" TextColor="White" FontSize="Medium"/>
-				<Label Text="Artistname" HorizontalOptions="CenterAndExpand"
+				<Label Text="{Binding CurrentSong.TrackArtist}" HorizontalOptions="CenterAndExpand"
 							 VerticalOptions="Center" TextColor="White" FontSize="Medium"/>
 				<Image BackgroundColor="#191e1c" HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
 							 Source="app_logo.png" Aspect="AspectFit"/>
@@ -60,8 +60,8 @@
 				<!-- End Song Position Slider -->
 
 				<!-- Volume Control Row 1-->
-				<Image x:Name="VolumeImage" Grid.Row="1" Grid.Column="0"
-							 Source="volume_off_white.png"/>
+				<controls:ImageButton x:Name="VolumeImage" Grid.Row="1" Grid.Column="0"
+							 Source="{Binding VolumeImage}"/>
 				<Slider x:Name="VolumeSlider" Grid.Row="1" Grid.Column="1"
 								Grid.ColumnSpan="5" VerticalOptions="CenterAndExpand"/>
 				<!-- End Volume Control -->
