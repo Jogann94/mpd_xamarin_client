@@ -4,11 +4,13 @@
 						 xmlns:controls="clr-namespace:MPDApp.Controls"
              x:Class="MPDApp.Pages.ArtistListPage"
 						 Icon="interpret_white.png"
+						 BackgroundColor="#191e1c"
 						 >
 
 	<ContentPage.Content>
 		<StackLayout>
-			<ListView x:Name="ArtistListView" ItemSelected="ArtistListView_ItemSelected">
+			<ListView x:Name="ArtistListView" ItemSelected="ArtistListView_ItemSelected" 
+								BackgroundColor="#191e1c" SeparatorColor="White">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>

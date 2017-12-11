@@ -7,7 +7,7 @@
 									>
 
 	<MasterDetailPage.Master>
-		<ContentPage Title="Master" BackgroundColor="#191e1c">
+		<ContentPage Title="Menu" BackgroundColor="#191e1c">
 
 			<StackLayout Orientation="Vertical" BackgroundColor="#191e1c">
 				<AbsoluteLayout HeightRequest="150">
@@ -32,6 +32,7 @@
 								SeparatorVisibility="Default"
 								SeparatorColor="White"
 								ItemSelected="PageListView_ItemSelected"
+								BackgroundColor="#191e1c"
 								>
 					<ListView.ItemTemplate>
 						<DataTemplate>
