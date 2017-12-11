@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MPDProtocol;
 using MPDProtocol.MPDDataobjects;
+using System.Windows.Input;
 
 namespace MPDApp.Pages
 {
@@ -45,23 +46,33 @@ namespace MPDApp.Pages
 				OnPropertyChanged("RepeatImageSource");
 				repeatImageSource = value;
 			}
-			
+		}
+
+		private string shuffleImageSource = "shuffle_white.png";
+		public string ShuffleImageSource
+		{
+			get { return shuffleImageSource; }
+			set
+			{
+				OnPropertyChanged("ShuffleImageSource");
+				shuffleImageSource = value;
+			}
 		}
 
 		private CancellationTokenSource tokenSource = new CancellationTokenSource();
 
-		public PlaybackPage ()
+		public PlaybackPage()
 		{
 			var con = MPDConnection.GetInstance();
-			if(con.IsConnected())
+			if (con.IsConnected())
 			{
 				Status = con.GetCurrentServerStatus();
 				if (status != null)
 					CurrentSong = con.GetCurrentSong();
 			}
 
-			InitializeComponent ();
-			
+			InitializeComponent();
+			BindingContext = this;
 		}
 
 		public async void Page_Appearing(object sender, EventArgs e)
@@ -80,72 +91,140 @@ namespace MPDApp.Pages
 
 			while (!ct.IsCancellationRequested)
 			{
+				System.Diagnostics.Debug.WriteLine("UPDATED");
 				int i = 0;
 
-				while(!ct.IsCancellationRequested && i < 6)
+				while (!ct.IsCancellationRequested && i < 4)
 				{
 					await Task.Delay(200);
 					i++;
 				}
 
 				var con = MPDConnection.GetInstance();
-				if(con.IsConnected())
+				if (con.IsConnected())
+				{
 					Status = con.GetCurrentServerStatus();
+					con.GetCurrentSong();
+				}
+				
+				Device.BeginInvokeOnMainThread(SetUpdatedValues);
 			}
 		}
 
-		public void Repeat_Clicked(object sender, EventArgs e)
+		private void SetUpdatedValues()
 		{
-			var con = MPDConnection.GetInstance();
-			if(con.IsConnected() && Status != null)
+			if( Status != null )
 			{
-				if (Status.Repeat == 0)
-					con.SetRepeat(true);
-				else
-					con.SetRepeat(false);
+				string imageSource = (status.Repeat == 1) ? "repeat_blue.png" : "repeat_white.png";
+				if(RepeatImageSource != imageSource )
+				{
+					RepeatImageSource = imageSource;
+				}
+
+				imageSource = (status.Random == 1) ? "shuffle_blue.png" : "shuffle_white.png";
+				if(ShuffleImageSource != imageSource)
+				{
+					ShuffleImageSource = imageSource;
+				}
+				
 			}
+			
 		}
 
-		public void Previous_Clicked(object sender, EventArgs e)
+		public ICommand Repeat_Clicked
 		{
-			var con = MPDConnection.GetInstance();
-			if (con.IsConnected())
-				con.PreviousSong();
-		}
-
-		public void Play_Clicked(object sender, EventArgs e)
-		{
-			var con = MPDConnection.GetInstance();
-			if (con.IsConnected())
-				con.PlaySongIndex(CurrentSong.PlaylistPosition);
-		}
-
-		public void Stop_Clicked(object sender, EventArgs e)
-		{
-			var con = MPDConnection.GetInstance();
-			if (con.IsConnected())
-				con.StopPlayback();
-		}
-
-		public void Next_Clicked(object sender, EventArgs e)
-		{
-			var con = MPDConnection.GetInstance();
-			if (con.IsConnected())
-				con.NextSong();
-		}
-
-		public void Shuffle_Clicked(object sender, EventArgs e)
-		{
-			var con = MPDConnection.GetInstance();
-			if (con.IsConnected())
+			get
 			{
-				if (Status.Random == 0)
-					con.SetRandom(true);
-				else
-					con.SetRandom(false);
+				return new Command(() =>
+				{
+					System.Diagnostics.Debug.WriteLine("HOLI CHIT");
+					var con = MPDConnection.GetInstance();
+					if (con.IsConnected() && Status != null)
+					{
+						if (Status.Repeat == 0)
+							con.SetRepeat(true);
+						else
+							con.SetRepeat(false);
+					}
+				});
 			}
 		}
+
+		public ICommand Previous_Clicked
+		{
+			get
+			{
+				return new Command(() =>
+				{
+					var con = MPDConnection.GetInstance();
+					if (con.IsConnected())
+						con.PreviousSong();
+				});
+			}
+		}
+
+		public ICommand Play_Clicked
+		{
+			get
+			{
+				return new Command(() =>
+				{
+					var con = MPDConnection.GetInstance();
+					if (con.IsConnected())
+					{
+						if (CurrentSong != null)
+						{
+							con.PlaySongIndex(CurrentSong.PlaylistPosition);
+						}
+					}
+				});
+			}
+		}
+
+		public ICommand Stop_Clicked
+		{
+			get
+			{
+				return new Command(() =>
+				{
+						var con = MPDConnection.GetInstance();
+						if (con.IsConnected())
+							con.StopPlayback();
+				});
+			}
+		}
+
+		public ICommand Next_Clicked
+		{
+			get
+			{
+				return new Command(() =>
+				{
+					var con = MPDConnection.GetInstance();
+					if (con.IsConnected())
+						con.NextSong();
+				});
+			}
+		}
+
+		public ICommand Shuffle_Clicked
+		{
+			get
+			{
+				return new Command(() =>
+				{
+					var con = MPDConnection.GetInstance();
+					if (con.IsConnected())
+					{
+						if (Status.Random == 0)
+							con.SetRandom(true);
+						else
+							con.SetRandom(false);
+					}
+				});
+			}
+		}
+
 	}
-
 
 }

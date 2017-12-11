@@ -38,7 +38,6 @@ namespace MPDApp.Pages
 			menuList.Add(new MasterPageItem("Search", "search", typeof(SearchPage), false));
 			menuList.Add(new MasterPageItem("Serverproperties", "dvr", typeof(ServerPage), false));
 			menuList.Add(new MasterPageItem("Profiles", "settings_input_antenna", typeof(ProfilePage), false));
-			menuList.Add(new MasterPageItem("Appsettings", "settings", typeof(SettingsPage), false));
 			menuList.Add(new MasterPageItem("Voice Control", "voice", typeof(SpeechPage), false));
 			menuList.Add(new MasterPageItem("Play", "play_arrow", typeof(PlaybackPage), false));
 		}
