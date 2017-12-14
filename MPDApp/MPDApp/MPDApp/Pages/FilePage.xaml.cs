@@ -66,5 +66,18 @@ namespace MPDApp.Pages
 				});
 			}
 		}
+
+		private void RemoveItem_Clicked(object sender, EventArgs e)
+		{
+			var con = MPDConnection.GetInstance();
+			if(con.IsConnected())
+			{
+				if(FileListView.SelectedItem is MPDTrack track)
+				{
+					con.RemoveIndex(track.PlaylistPosition);
+				}
+			}
+		}
+
 	}
 }

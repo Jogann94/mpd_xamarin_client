@@ -52,7 +52,7 @@ namespace MPDApp.Pages
 		{
 			var playlist = e.SelectedItem as MPDPlaylist;
 			
-			Navigation.PushAsync(new SongListPage(playlist.Name));
+			Navigation.PushAsync(SongListPage.CreateWithPlaylist(playlist.Name));
 		}
 	}
 }

@@ -6,9 +6,47 @@
 						 BackgroundColor="#191e1c"
 						 >
 
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Icon="add_white.png" Clicked="Add_Clicked"/>
+		<ToolbarItem Icon="library_add_white.png" Clicked="AddAll_Clicked"/>
+	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
-		<StackLayout>
-			<Label Text="Placeholder searchpage" TextColor="White"/>
+		<StackLayout Margin="0, 15, 0, 0">
+			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+				<Label Text="Search Type:" FontSize="Medium" TextColor="White" VerticalOptions="Center"/>
+				<Picker x:Name="TypePicker" Title="Search Type" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
+			</StackLayout>
+
+			<StackLayout>
+				<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+					<Entry x:Name="SearchEntry" TextColor="Black" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+					<Button Image="search_white.png" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="60" Clicked="Search_Clicked"/>
+				</StackLayout>
+			</StackLayout>
+
+			<ListView x:Name="TrackListView" ItemsSource="{Binding SearchResultList}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Spacing="30" BackgroundColor="#191e1c" HeightRequest="40">
+								<Image Source="app_logo.png" VerticalOptions="Center"/>
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="*"/>
+										<RowDefinition Height="*"/>
+									</Grid.RowDefinitions>
+									<Label Grid.Row="0" VerticalOptions="Center" TextColor="White" Text="{Binding TrackTitle}"/>
+									<Label Grid.Row="1" VerticalOptions="Center" TextColor="White" Text="{Binding TrackArtist}"/>
+								</Grid>
+
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			
 		</StackLayout>
+
 	</ContentPage.Content>
+	
 </ContentPage>

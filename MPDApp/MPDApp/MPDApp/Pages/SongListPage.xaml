@@ -5,10 +5,6 @@
 						 BackgroundColor="#191e1c"
 						 >
 
-	<ContentPage.ToolbarItems>
-		<ToolbarItem Icon="library_add_white.png" Clicked="AddItem_Clicked"/>
-	</ContentPage.ToolbarItems>
-	
 	<ContentPage.Content>
 		<StackLayout>
 			<ListView x:Name="SongListView">

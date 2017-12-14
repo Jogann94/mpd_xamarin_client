@@ -49,7 +49,6 @@ namespace MPDApp.Controls
 			Initialize();
 		}
 
-
 		public void Initialize()
 		{
 			GestureRecognizers.Add(new TapGestureRecognizer()

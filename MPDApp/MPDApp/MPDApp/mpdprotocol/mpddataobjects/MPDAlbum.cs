@@ -4,7 +4,7 @@ namespace MPDProtocol.MPDDataobjects
 {
 	public class MPDAlbum : IComparable<MPDAlbum>
 	{
-		public string name { get; private set; }
+		public string Name { get; private set; }
 
 		private string _musicbrainzID;
 		public string musicbrainzID
@@ -14,14 +14,14 @@ namespace MPDProtocol.MPDDataobjects
 		}
 
 		private string _artistName;
-		public string artistName
+		public string ArtistName
 		{
 			get { return _artistName; }
 			set { if (value != null) _artistName = value; }
 		}
 
 		private DateTime _date;
-		public DateTime date
+		public DateTime Date
 		{
 			get { return _date; }
 			set { if (value != null) _date = value; }
@@ -32,7 +32,7 @@ namespace MPDProtocol.MPDDataobjects
 
 		public MPDAlbum(String name)
 		{
-			this.name = name;
+			this.Name = name;
 			_musicbrainzID = "";
 			_artistName = "";
 			_date = new DateTime();
@@ -74,8 +74,8 @@ namespace MPDProtocol.MPDDataobjects
 				return false;
 			}
 
-			bool result = name.Equals(album.name)
-										&& artistName.Equals(artistName)
+			bool result = Name.Equals(album.Name)
+										&& ArtistName.Equals(ArtistName)
 										&& _musicbrainzID.Equals(album._musicbrainzID)
 										&& _date.Equals(album._date);
 
@@ -85,8 +85,8 @@ namespace MPDProtocol.MPDDataobjects
 		public override int GetHashCode()
 		{
 			int hash = 13;
-			hash = (hash * 7) + (!Object.ReferenceEquals(null, name) ? name.GetHashCode() : 0);
-			hash = (hash * 7) + (!Object.ReferenceEquals(null, artistName) ? artistName.GetHashCode() : 0);
+			hash = (hash * 7) + (!Object.ReferenceEquals(null, Name) ? Name.GetHashCode() : 0);
+			hash = (hash * 7) + (!Object.ReferenceEquals(null, ArtistName) ? ArtistName.GetHashCode() : 0);
 			hash = (hash * 7) + (!Object.ReferenceEquals(null, _musicbrainzID) ? _musicbrainzID.GetHashCode() : 0);
 			hash = (hash * 7) + (!Object.ReferenceEquals(null, _date) ? _date.GetHashCode() : 0);
 			return hash;
@@ -126,7 +126,7 @@ namespace MPDProtocol.MPDDataobjects
 				return 0;
 			}
 
-			return string.Compare(name.ToLower(), other.name.ToLower());
+			return string.Compare(Name.ToLower(), other.Name.ToLower());
 		}
 
 	}

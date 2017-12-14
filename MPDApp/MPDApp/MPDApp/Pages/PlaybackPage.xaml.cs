@@ -19,75 +19,99 @@ namespace MPDApp.Pages
 		public MPDTrack CurrentSong
 		{
 			get { return currentSong; }
-			set
-			{
-				OnPropertyChanged("CurrentSong");
-				currentSong = value;
-			}
+			set{ OnPropertyChanged("CurrentSong"); currentSong = value; }
 		}
 
 		private MPDCurrentStatus status;
 		public MPDCurrentStatus Status
 		{
 			get { return status; }
-			set
-			{
-				OnPropertyChanged("Status");
-				status = value;
-			}
+			set { OnPropertyChanged("Status"); status = value;}
 		}
 
 		private string repeatImageSource = "repeat_white.png";
 		public string RepeatImageSource
 		{
 			get { return repeatImageSource; }
-			set
-			{
-				OnPropertyChanged("RepeatImageSource");
-				repeatImageSource = value;
-			}
+			set { OnPropertyChanged("RepeatImageSource"); repeatImageSource = value;}
 		}
 
 		private string shuffleImageSource = "shuffle_white.png";
 		public string ShuffleImageSource
 		{
 			get { return shuffleImageSource; }
+			set	{ OnPropertyChanged("ShuffleImageSource"); shuffleImageSource = value;}
+		}
+
+		private double promilleElapsed = 0;
+		public double PromilleElapsed
+		{
+			get	{ return promilleElapsed; }
+			set { OnPropertyChanged("PromilleElapsed"); promilleElapsed = value;}
+		}
+
+		private string elapsedTimeString = "00:00";
+		public string ElapsedTimeString
+		{
+			get
+			{
+				return elapsedTimeString;
+			}
 			set
 			{
-				OnPropertyChanged("ShuffleImageSource");
-				shuffleImageSource = value;
+				if (elapsedTimeString != value)
+				{
+					elapsedTimeString = value;
+					OnPropertyChanged("ElapsedTimeString");
+				}
 			}
 		}
 
-		private string volumeImageSource;
-		public string VolumeImagesource
+		private string tracklengthString = "00:00";
+		public string TracklengthString
+		{
+			get
+			{
+				return tracklengthString;
+			}
+			set
+			{
+				if(tracklengthString != value)
+				{
+					tracklengthString = value;
+					OnPropertyChanged("TracklengthString");
+				}
+			}
+		}
+
+		private MPDConnection con;
+
+		private string volumeImageSource = "volume_off_white.png";
+		public string VolumeImageSource
 		{
 			get { return volumeImageSource; }
 			set
 			{
-				OnPropertyChanged("VolumeImageSource");
-				volumeImageSource = value;
+				if(volumeImageSource != value)
+				{
+					OnPropertyChanged("VolumeImageSource");
+					volumeImageSource = value;
+				}
 			}
 		}
 
+		private bool jumped = false;
 		private CancellationTokenSource tokenSource = new CancellationTokenSource();
 
 		public PlaybackPage()
 		{
-			var con = MPDConnection.GetInstance();
-			if (con.IsConnected())
-			{
-				Status = con.GetCurrentServerStatus();
-				if (status != null)
-					CurrentSong = con.GetCurrentSong();
-			}
-
 			InitializeComponent();
 			BindingContext = this;
 		}
 
 		public async void Page_Appearing(object sender, EventArgs e)
 		{
+			tokenSource = new CancellationTokenSource();
 			var token = tokenSource.Token;
 			await Task.Factory.StartNew(() => UpdateStatus(token));
 		}
@@ -99,26 +123,38 @@ namespace MPDApp.Pages
 
 		public async Task UpdateStatus(CancellationToken ct)
 		{
-
 			while (!ct.IsCancellationRequested)
 			{
-				System.Diagnostics.Debug.WriteLine("UPDATED");
 				int i = 0;
+
+				await WaitIfTimeJumped();
+				if (CheckAndSetConnection())
+				{
+					lock (this)
+					{
+						Status = con.GetCurrentServerStatus();
+						GetCurrentSongFromMPD();
+					}
+
+				}
+
+				Device.BeginInvokeOnMainThread(SetUpdatedValues);
 
 				while (!ct.IsCancellationRequested && i < 4)
 				{
 					await Task.Delay(200);
 					i++;
 				}
+			}
 
-				var con = MPDConnection.GetInstance();
-				if (con.IsConnected())
-				{
-					Status = con.GetCurrentServerStatus();
-					CurrentSong = con.GetCurrentSong();
-				}
+		}
 
-				Device.BeginInvokeOnMainThread(SetUpdatedValues);
+		private async Task WaitIfTimeJumped()
+		{
+			if (jumped)
+			{
+				await Task.Delay(300);
+				jumped = false;
 			}
 		}
 
@@ -138,9 +174,110 @@ namespace MPDApp.Pages
 					ShuffleImageSource = imageSource;
 				}
 
-				System.Diagnostics.Debug.WriteLine(Status.Volume);
+				if (status.Volume >= 60)
+				{
+					VolumeImageSource = "volume_up_white.png";
+				}
+				else if (status.Volume > 0)
+				{
+					VolumeImageSource = "volume_down_white.png";
+				}
+				else
+				{
+					VolumeImageSource = "volume_off_white.png";
+				}
+
+				PromilleElapsed = (double)status.ElapsedTime / (1000.0 * Status.CurrentTrackLength);
+				TracklengthString = (CurrentSong != null) ?
+					GenerateTimeString(CurrentSong.LengthInSeconds) : GenerateTimeString(Status.CurrentTrackLength);
+
+				ElapsedTimeString = GenerateTimeString(Status.ElapsedTimeInSec);
+				
 			}
 
+		}
+
+		private void GetCurrentSongFromMPD()
+		{
+			if(CheckAndSetConnection())
+			{
+				var song = con.GetCurrentSong();
+				if (song == null)
+				{
+					var currentList = con.GetCurrentPlaylist();
+					if (currentList.Count > 0)
+					{
+						song = currentList.ElementAt(0) as MPDTrack;
+					}
+					else
+					{
+						song = null;
+					}
+				}
+
+				CurrentSong = song;
+			}
+		}
+
+		private bool CheckAndSetConnection()
+		{
+			con = MPDConnection.GetInstance();
+			if (con.IsConnected())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		private string GenerateTimeString(int seconds)
+		{
+			int remainingSeconds = seconds % 60;
+			int minutes = (seconds / 60) % 60;
+			int hours = (seconds / 60 / 60);
+			if (hours > 0)
+			{
+				return String.Format("{0:00}:{1:00}:{2:00}", hours, minutes, remainingSeconds);
+			}
+			else
+			{
+				return String.Format("{0:00}:{1:00}", minutes, remainingSeconds);
+			}
+		}
+
+		private async void Playlist_Clicked(object sender, EventArgs e)
+		{
+			await Navigation.PushAsync(SongListPage.CreateWithCurrentPlaylist());
+		}
+
+		private void Time_Changed(object sender, EventArgs e)
+		{
+			lock (this)
+			{
+				var s = sender as Slider;
+				int jumpToSecond = (int)(s.Value * Status.CurrentTrackLength);
+				if ((Math.Abs(jumpToSecond - Status.ElapsedTimeInSec) >= 4)
+						&& CheckAndSetConnection())
+				{
+						con.SeekSeconds(jumpToSecond);
+						jumped = true;
+				}
+			}
+		}
+
+		private void Volume_Changed(object sender, EventArgs e)
+		{
+			lock (this)
+			{
+				var s = sender as Slider;
+				int volume = (int)s.Value;
+				if (CheckAndSetConnection())
+				{
+					con.SetVolume(volume);
+				}
+			}
 		}
 
 		public ICommand Repeat_Clicked
@@ -149,9 +286,7 @@ namespace MPDApp.Pages
 			{
 				return new Command(() =>
 				{
-					System.Diagnostics.Debug.WriteLine("HOLI CHIT");
-					var con = MPDConnection.GetInstance();
-					if (con.IsConnected() && Status != null)
+					if (CheckAndSetConnection() && Status != null)
 					{
 						if (Status.Repeat == 0)
 							con.SetRepeat(true);
@@ -167,11 +302,10 @@ namespace MPDApp.Pages
 			get
 			{
 				return new Command(() =>
-				{
-					var con = MPDConnection.GetInstance();
-					if (con.IsConnected())
-						con.PreviousSong();
-				});
+			 {
+				 if (CheckAndSetConnection())
+					 con.PreviousSong();
+			 });
 			}
 		}
 
@@ -181,8 +315,7 @@ namespace MPDApp.Pages
 			{
 				return new Command(() =>
 				{
-					var con = MPDConnection.GetInstance();
-					if (con.IsConnected())
+					if (CheckAndSetConnection())
 					{
 						if (CurrentSong != null)
 						{
@@ -199,8 +332,7 @@ namespace MPDApp.Pages
 			{
 				return new Command(() =>
 				{
-					var con = MPDConnection.GetInstance();
-					if (con.IsConnected())
+					if (CheckAndSetConnection())
 						con.StopPlayback();
 				});
 			}
@@ -212,8 +344,7 @@ namespace MPDApp.Pages
 			{
 				return new Command(() =>
 				{
-					var con = MPDConnection.GetInstance();
-					if (con.IsConnected())
+					if (CheckAndSetConnection())
 						con.NextSong();
 				});
 			}
@@ -225,8 +356,7 @@ namespace MPDApp.Pages
 			{
 				return new Command(() =>
 				{
-					var con = MPDConnection.GetInstance();
-					if (con.IsConnected())
+					if (CheckAndSetConnection())
 					{
 						if (Status.Random == 0)
 							con.SetRandom(true);

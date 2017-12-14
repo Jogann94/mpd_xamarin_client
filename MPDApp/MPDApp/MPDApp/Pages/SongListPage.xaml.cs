@@ -16,32 +16,108 @@ namespace MPDApp.Pages
 	{
 		private MPDCommands.MPD_SEARCH_TYPE type;
 
-		public SongListPage(string playlistName)
+		private enum ListType { CURRENT, SAVED, SEARCH };
+		private ListType listType;
+
+		private SongListPage()
 		{
 			InitializeComponent();
-			Title = playlistName;
+		}
+
+		public static SongListPage CreateWithCurrentPlaylist()
+		{
+			SongListPage result = new SongListPage()
+			{ Title = "Current Playlist", listType = ListType.CURRENT };
+			CreateToolbarItems(result);
 
 			Task t = Task.Factory.StartNew(async () =>
 			{
 				await Task.Delay(App.PAGE_ANIMATION_DELAY);
-				GetSongsFromMPD(true);
+				await result.GetSongsFromMPD();
 			});
+
+			return result;
 		}
 
-		public SongListPage(string searchValue, MPDCommands.MPD_SEARCH_TYPE searchType)
+		public static SongListPage CreateWithPlaylist(string playlistName)
 		{
-			InitializeComponent();
-			Title = searchValue;
-			type = searchType;
+			SongListPage result = new SongListPage()
+			{ Title = playlistName, listType = ListType.SAVED };
+			CreateToolbarItems(result);
 
 			Task t = Task.Factory.StartNew(async () =>
 			{
 				await Task.Delay(App.PAGE_ANIMATION_DELAY);
-				GetSongsFromMPD(false);
+				await result.GetSongsFromMPD();
 			});
+
+			return result;
 		}
 
-		private async void GetSongsFromMPD(bool isPlaylist)
+		public static SongListPage CreateWithSearch(string searchValue, MPDCommands.MPD_SEARCH_TYPE searchType)
+		{
+			SongListPage result = new SongListPage()
+			{ Title = searchValue, type = searchType, listType = ListType.SEARCH };
+			CreateToolbarItems(result);
+
+			Task t = Task.Factory.StartNew(async () =>
+			{
+				await Task.Delay(App.PAGE_ANIMATION_DELAY);
+				await result.GetSongsFromMPD();
+			});
+			
+			return result;
+		}
+
+		private static void CreateToolbarItems(SongListPage newPage)
+		{
+			if(newPage.listType == ListType.CURRENT)
+			{
+				var playItem = new ToolbarItem()
+				{
+					Icon = "play_arrow_white.png"
+				};
+				playItem.Clicked += newPage.PlayItem_Clicked;
+
+				var removeItem = new ToolbarItem()
+				{
+					Icon = "remove_white.png"
+				};
+				removeItem.Clicked += newPage.RemoveItem_Clicked;
+
+				newPage.ToolbarItems.Add(removeItem);
+				newPage.ToolbarItems.Add(playItem);
+			}
+			else if(newPage.listType == ListType.SAVED)
+			{
+				var loadPlaylistItem = new ToolbarItem()
+				{
+					Icon = "library_add_white.png"
+				};
+				loadPlaylistItem.Clicked += newPage.LoadPlaylist_Clicked;
+
+				newPage.ToolbarItems.Add(loadPlaylistItem);
+			}
+			else
+			{
+				var removeItem = new ToolbarItem()
+				{
+					Icon = "remove_white.png"
+				};
+				removeItem.Clicked += newPage.RemoveItem_Clicked;
+
+				var add_Item = new ToolbarItem()
+				{
+					Icon = "add_white.png"
+				};
+				add_Item.Clicked += newPage.AddItem_Clicked;
+
+				newPage.ToolbarItems.Add(removeItem);
+				newPage.ToolbarItems.Add(add_Item);
+			}
+		}
+
+		private async Task GetSongsFromMPD()
 		{
 			var con = MPDConnection.GetInstance();
 			while (!con.IsConnected())
@@ -51,13 +127,17 @@ namespace MPDApp.Pages
 			}
 
 			List<MPDFileEntry> fileList;
-			if (isPlaylist)
+			if (listType == ListType.SAVED)
 			{
 				fileList = con.GetSavedPlaylist(Title);
 			}
-			else
+			else if (listType == ListType.SEARCH)
 			{
 				fileList = con.GetSearchedFiles(Title, type);
+			}
+			else
+			{
+				fileList = con.GetCurrentPlaylist();
 			}
 
 			List<MPDTrack> songList = fileList.Select(x => x as MPDTrack).ToList();
@@ -76,11 +156,52 @@ namespace MPDApp.Pages
 			}
 		}
 
-		private void AddItem_Clicked(object sender, EventArgs e)
+		private void PlayItem_Clicked(object sender, EventArgs e)
+		{
+			if(SongListView.SelectedItem is MPDTrack track)
+			{
+				if(MPDConnection.GetInstance().IsConnected())
+				{
+					MPDConnection.GetInstance().PlaySongIndex(track.PlaylistPosition);
+				}
+			}
+		}
+
+		private async void AddItem_Clicked(object sender, EventArgs e)
 		{
 			if (SongListView.SelectedItem is MPDTrack currentSelected)
 			{
 				MPDConnection.GetInstance().AddSong(currentSelected.Path);
+			}
+
+			if(listType == ListType.CURRENT)
+			{
+				await Task.Delay(200);
+				await GetSongsFromMPD();
+			}
+		}
+
+		private async void RemoveItem_Clicked(object sender, EventArgs e)
+		{
+			if (SongListView.SelectedItem is MPDTrack currentSelected)
+			{
+				MPDConnection.GetInstance().RemoveIndex(currentSelected.PlaylistPosition);
+			}
+
+			if (listType == ListType.CURRENT)
+			{
+				await Task.Delay(200);
+				await GetSongsFromMPD();
+			}
+		}
+
+		private void LoadPlaylist_Clicked(object sender, EventArgs e)
+		{
+			var con = MPDConnection.GetInstance();
+			if (con.IsConnected())
+			{
+				con.ClearPlaylist();
+				con.LoadPlaylist(Title);
 			}
 		}
 	}

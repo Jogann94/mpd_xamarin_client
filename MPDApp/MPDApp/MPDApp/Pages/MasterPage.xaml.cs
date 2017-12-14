@@ -12,59 +12,68 @@ namespace MPDApp.Pages
 {
 	public partial class MasterPage : MasterDetailPage
 	{
-		public ObservableCollection<MasterPageItem> menuList { get; set; }
+		public ObservableCollection<MasterPageItem> MenuList { get; set; }
 
 		public int lastSelectedIndex;
 
 		public MasterPage()
 		{
 			InitializeComponent();
-			menuList = new ObservableCollection<MasterPageItem>();
+			MenuList = new ObservableCollection<MasterPageItem>();
 			lastSelectedIndex = 0;
 
 			FillMenuList();
-			PageListView.ItemsSource = menuList;
+			PageListView.ItemsSource = MenuList;
 
-			var startPage = new NavigationPage(new MainPage());
-			startPage.BarBackgroundColor = Color.OrangeRed;
+			var startPage = new NavigationPage(new MainPage())
+			{ BarBackgroundColor = Color.OrangeRed };
 			Detail = startPage;		
 		}
 
 		private void FillMenuList()
 		{
-			menuList.Add(new MasterPageItem("Bibliothek", "library_music", typeof(MainPage), true));
-			menuList.Add(new MasterPageItem("Playlists", "queue_music", typeof(PlalistInfoPage), false));
-			menuList.Add(new MasterPageItem("Files", "folder", typeof(FilePage), false));
-			menuList.Add(new MasterPageItem("Search", "search", typeof(SearchPage), false));
-			menuList.Add(new MasterPageItem("Serverproperties", "dvr", typeof(ServerPage), false));
-			menuList.Add(new MasterPageItem("Profiles", "settings_input_antenna", typeof(ProfilePage), false));
-			menuList.Add(new MasterPageItem("Voice Control", "voice", typeof(SpeechPage), false));
-			menuList.Add(new MasterPageItem("Play", "play_arrow", typeof(PlaybackPage), false));
+			MenuList.Add(new MasterPageItem("Bibliothek", "library_music", typeof(MainPage), true));
+			MenuList.Add(new MasterPageItem("Playlists", "queue_music", typeof(PlalistInfoPage), false));
+			MenuList.Add(new MasterPageItem("Files", "folder", typeof(FilePage), false));
+			MenuList.Add(new MasterPageItem("Search", "search", typeof(SearchPage), false));
+			MenuList.Add(new MasterPageItem("Serverproperties", "dvr", typeof(ServerPage), false));
+			MenuList.Add(new MasterPageItem("Profiles", "settings_input_antenna", typeof(ProfilePage), false));
+			MenuList.Add(new MasterPageItem("Voice Control", "voice", typeof(SpeechPage), false));
+			MenuList.Add(new MasterPageItem("Play", "play_arrow", typeof(PlaybackPage), false));
 		}
 
 		private void PageListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
 			MasterPageItem selected = e.SelectedItem as MasterPageItem;
-			int selectedListPosition = menuList.IndexOf(selected);
+			int selectedListPosition = MenuList.IndexOf(selected);
 
-			var lastItem = menuList[lastSelectedIndex];
+			var lastItem = MenuList[lastSelectedIndex];
 
-			menuList[lastSelectedIndex] = new MasterPageItem(lastItem.Title, lastItem.IconNameWithoutColor, lastItem.TargetType, false);
-			menuList[selectedListPosition] = new MasterPageItem(selected.Title, selected.IconNameWithoutColor, selected.TargetType, true);
+			MenuList[lastSelectedIndex] = new MasterPageItem(lastItem.Title, lastItem.IconNameWithoutColor, lastItem.TargetType, false);
+			MenuList[selectedListPosition] = new MasterPageItem(selected.Title, selected.IconNameWithoutColor, selected.TargetType, true);
 			lastSelectedIndex = selectedListPosition;
 
 			var type = selected.TargetType;
 			var nav = Detail as NavigationPage;
-			Detail = CreateNewNavigationPage(Activator.CreateInstance(type) as Page);
+			try
+			{
+				Detail = CreateNewNavigationPage(Activator.CreateInstance(type) as Page);
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.InnerException);
+			}
 
 			IsPresented = false;
 		}
 
 		private NavigationPage CreateNewNavigationPage(Page p)
 		{
-			var returnPage = new NavigationPage(p);
-			returnPage.BarBackgroundColor = Color.OrangeRed;
-			returnPage.BarTextColor = Color.White;
+			var returnPage = new NavigationPage(p)
+			{
+				BarBackgroundColor = Color.OrangeRed,
+				BarTextColor = Color.White
+			};
 			return returnPage;
 		}
 

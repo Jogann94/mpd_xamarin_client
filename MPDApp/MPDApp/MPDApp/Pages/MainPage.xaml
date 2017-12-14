@@ -11,6 +11,6 @@
 		<ToolbarItem Icon="search_white.png" />
 	</TabbedPage.ToolbarItems>
 	<local:ArtistListPage/>
-	<local:CurrentPlaylistPage/>
+	<local:AlbumListPage/>
 	
 </TabbedPage>

@@ -6,9 +6,8 @@
 						 BackgroundColor="#191e1c">
 	
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Icon="search_white.png"/>
-		<ToolbarItem Icon="library_add_white.png" Clicked="AddItem_Clicked"/>
-		<ToolbarItem Icon="more_vert_white.png"/>
+		<ToolbarItem Icon="remove_white.png" Clicked="RemoveItem_Clicked"/>
+		<ToolbarItem Icon="add_white.png" Clicked="AddItem_Clicked"/>
 	</ContentPage.ToolbarItems>
 
 	<ContentPage.Content>

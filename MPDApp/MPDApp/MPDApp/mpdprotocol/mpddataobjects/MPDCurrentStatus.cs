@@ -90,8 +90,14 @@ namespace MPDProtocol.MPDDataobjects
 		/// <summary>
 		/// Time elapsed on current Song
 		/// </summary>
-		public int elapsedTime;
-		public int currentTrackLength;
+		public int ElapsedTime { get; set; }
+		public int ElapsedTimeInSec
+		{
+			get { return ElapsedTime / 1000; }
+			set { ElapsedTime = value * 1000; }
+		}
+
+		public int CurrentTrackLength { get; set; }
 
 		/// <summary>
 		/// If an updating job of the database is running, the id gets saved here.
@@ -143,8 +149,8 @@ namespace MPDProtocol.MPDDataobjects
 			bitDepth = status.bitDepth;
 			channelCount = status.channelCount;
 			bitrate = status.bitrate;
-			elapsedTime = status.elapsedTime;
-			currentTrackLength = status.currentTrackLength;
+			ElapsedTime = status.ElapsedTime;
+			CurrentTrackLength = status.CurrentTrackLength;
 			updateDBJob = status.updateDBJob;
 			playbackState = status.playbackState;
 		}
@@ -195,8 +201,8 @@ namespace MPDProtocol.MPDDataobjects
 			retString += "Bitdepth: " + bitDepth + "\n";
 			retString += "Channel count: " + channelCount + "\n";
 			retString += "Bitrate: " + bitrate + "\n";
-			retString += "Elapsed time: " + elapsedTime + "\n";
-			retString += "Track length: " + currentTrackLength + "\n";
+			retString += "Elapsed time: " + ElapsedTime + "\n";
+			retString += "Track length: " + CurrentTrackLength + "\n";
 			retString += "UpdateDB job id: " + updateDBJob + "\n";
 			retString += "Playback state: " + playbackState + "\n";
 

@@ -55,10 +55,13 @@ namespace MPDApp.Pages
 			{
 				if(speechHelper == null)
 				{
-					speechHelper = DependencyService.Get<ISpeechHelper>();
-					if(speechHelper == null)
+					try
 					{
-						throw new NotImplementedException();
+						speechHelper = DependencyService.Get<ISpeechHelper>();
+					}
+					catch (Exception)
+					{
+						DisplayAlert("Error", "No Speech Service implemented", "ok");
 					}
 				}
 				isRecording = true;
@@ -90,21 +93,15 @@ namespace MPDApp.Pages
 			}
 		}
 
-		private async Task<AIResponse> SendAIRequest(string text)
+		private Task<AIResponse> SendAIRequest(string text)
 		{
-			var response = await Task.Factory.StartNew(() =>
+			if (ai == null)
 			{
-				if (ai == null)
-				{
-					var config = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.English);
-					ai = new ApiAi(config);
-				}
-				var res = ai.TextRequest(text);
+				var config = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.English);
+				ai = new ApiAi(config);
+			}
 
-				return res;
-			});
-
-			return response;
+			return Task.Factory.StartNew(() => ai.TextRequest(text));
 		}
 
 		private void SpeechOutput(string text)

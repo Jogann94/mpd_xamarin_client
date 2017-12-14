@@ -43,11 +43,11 @@ namespace MPDApp.Pages
 				await Task.Delay(200);
 				con = MPDConnection.GetInstance();
 			}
-
+			
 			List<MPDArtist> artists = con.GetArtists();
 			if (artists != null && artists.Count > 0)
 			{
-				Device.BeginInvokeOnMainThread(() =>
+				Device.BeginInvokeOnMainThread( () =>
 				{
 					ArtistListView.ItemsSource = artists;
 				});
@@ -57,7 +57,7 @@ namespace MPDApp.Pages
 		private async void ArtistListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
 			MPDArtist a = e.SelectedItem as MPDArtist;
-			await Navigation.PushAsync(new SongListPage(a.ArtistName,
+			await Navigation.PushAsync(SongListPage.CreateWithSearch(a.ArtistName,
 				MPDCommands.MPD_SEARCH_TYPE.MPD_SEARCH_ARTIST));
 		}
 	}

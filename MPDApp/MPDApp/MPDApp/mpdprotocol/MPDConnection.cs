@@ -797,7 +797,7 @@ namespace MPDProtocol
 					else if (response.StartsWith(MPDResponses.MPD_RESPONSE_ALBUM_ARTIST_NAME))
 					{
 						/* Check if the response is a albumartist. */
-						tempAlbum.artistName = response.Substring(MPDResponses.MPD_RESPONSE_ALBUM_ARTIST_NAME.Length);
+						tempAlbum.ArtistName = response.Substring(MPDResponses.MPD_RESPONSE_ALBUM_ARTIST_NAME.Length);
 					}
 					else if (response.StartsWith(MPDResponses.MPD_RESPONSE_DATE))
 					{
@@ -808,7 +808,7 @@ namespace MPDProtocol
 						try
 						{
 							DateTime date = DateTime.Parse(dateString);
-							tempAlbum.date = date;
+							tempAlbum.Date = date;
 						}
 						catch (FormatException e)
 						{
@@ -1250,7 +1250,7 @@ namespace MPDProtocol
 					// Remove empty albums at beginning of the list
 					List<MPDAlbum> albums = ParseMPDAlbums();
 
-					albums.RemoveAll(album => album.name.Equals(""));
+					albums.RemoveAll(album => album.Name.Equals(""));
 
 					return albums;
 				}
@@ -1277,7 +1277,7 @@ namespace MPDProtocol
 				{
 					// Remove empty albums at beginning of the list
 					List<MPDAlbum> albums = ParseMPDAlbums();
-					albums.RemoveAll(album => album.name.Equals(""));
+					albums.RemoveAll(album => album.Name.Equals(""));
 					return albums;
 				}
 				catch (IOException e)
@@ -1769,15 +1769,15 @@ namespace MPDProtocol
 							String[] timeInfoSep = timeInfo.Split(':');
 							if (timeInfoSep.Length == 2)
 							{
-								status.elapsedTime = int.Parse(timeInfoSep[0]);
-								status.currentTrackLength = int.Parse(timeInfoSep[1]);
+								status.ElapsedTime = int.Parse(timeInfoSep[0]);
+								status.CurrentTrackLength = int.Parse(timeInfoSep[1]);
 							}
 						}
 						else if (response.StartsWith(MPDResponses.MPD_RESPONSE_ELAPSED_TIME))
 						{
 							try
 							{
-								status.elapsedTime = (int)Math.Round(float.Parse(response.Substring(MPDResponses.MPD_RESPONSE_ELAPSED_TIME.Length)));
+								status.ElapsedTime = (int)Math.Round(float.Parse(response.Substring(MPDResponses.MPD_RESPONSE_ELAPSED_TIME.Length)));
 							}
 							catch (FormatException e)
 							{
@@ -1788,7 +1788,7 @@ namespace MPDProtocol
 						{
 							try
 							{
-								status.currentTrackLength = (int)Math.Round(float.Parse(response.Substring(MPDResponses.MPD_RESPONSE_DURATION.Length)));
+								status.CurrentTrackLength = (int)Math.Round(float.Parse(response.Substring(MPDResponses.MPD_RESPONSE_DURATION.Length)));
 							}
 							catch (FormatException e)
 							{
@@ -2324,7 +2324,7 @@ namespace MPDProtocol
 				{
 					// This will add all tracks from album where artistname is either the artist or
 					// the album artist.
-					if (!(AddAlbumTracks(album.name, artistname, "")))
+					if (!(AddAlbumTracks(album.Name, artistname, "")))
 					{
 						success = false;
 					}
