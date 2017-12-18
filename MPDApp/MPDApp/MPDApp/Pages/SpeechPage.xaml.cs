@@ -9,6 +9,10 @@ using MPDApp.DependencyServices;
 using MPDApp.Services;
 using ApiAiSDK;
 using ApiAiSDK.Model;
+using MPDApp.Models;
+using MPDProtocol;
+using MPDProtocol.MPDDataobjects;
+using System.Net.Http;
 
 namespace MPDApp.Pages
 {
@@ -70,7 +74,7 @@ namespace MPDApp.Pages
 			}
 		}
 
-		private async void RecordedListener(string text)
+		private void RecordedListener(string text)
 		{
 			speechHelper.Recorded -= RecordedListener;
 			isRecording = false;
@@ -78,14 +82,16 @@ namespace MPDApp.Pages
 			if (text != string.Empty && text != null)
 			{
 				SpeechInput = text;
-				var response = await SendAIRequest(text);
-
-				if (response != null)
+				Task.Factory.StartNew(async () =>
 				{
-					AIFullfillment fullfillment = new AIFullfillment(response);
-					fullfillment.OnActionFullfilled += SpeechOutput;
-					fullfillment.FullfillAIResponse();
-				}
+					var response = await SendAIRequest(text);
+					if (response != null)
+					{
+						AIFullfillment fullfillment = new AIFullfillment(response);
+						fullfillment.OnActionFullfilled += SpeechOutput;
+						fullfillment.FullfillAIResponse();
+					}
+				});
 			}
 			else
 			{
@@ -93,15 +99,18 @@ namespace MPDApp.Pages
 			}
 		}
 
-		private Task<AIResponse> SendAIRequest(string text)
+		private async Task<AIResponse> SendAIRequest(string text)
 		{
 			if (ai == null)
 			{
-				var config = new AIConfiguration("157d22de6510452cbfbcdb85e3215a5b", SupportedLanguage.English);
-				ai = new ApiAi(config);
+				ai = new ApiAi(App.AIConfig);
+				var response = ai.TextRequest("HI");
+				App.AIConfig.SessionId = response.SessionId;
+				await ConfigureAIEntities();
+
 			}
 
-			return Task.Factory.StartNew(() => ai.TextRequest(text));
+			return ai.TextRequest(text);
 		}
 
 		private void SpeechOutput(string text)
@@ -110,6 +119,55 @@ namespace MPDApp.Pages
 				() => ResponseText = text);
 
 			speechHelper.TextToSpeach(text);
+		}
+
+		private async Task<HttpResponseMessage> ConfigureAIEntities()
+		{
+			AIEntityService entityService = new AIEntityService(App.AIConfig);
+			DialogEntityRequest req = new DialogEntityRequest()
+			{ SessionId = App.AIConfig.SessionId };
+
+			req.entities.Add(GeneratePlaylistEntity());
+			req.entities.Add(GenerateArtistEntity());
+			var response = await entityService.PostEntity(req);
+			return response;
+		
+		}
+
+		private Entity GeneratePlaylistEntity()
+		{
+			Entity playlistEntity = new Entity() { Name = "Playlist" };
+
+			var con = MPDConnection.GetInstance();
+			if (con.IsConnected())
+			{
+				var playlistCollection = con.GetPlaylists().Cast<MPDPlaylist>().ToList();
+				foreach (var list in playlistCollection)
+				{
+					playlistEntity.AddEntry(
+						new EntityEntry(list.Name, new string[] { list.Name }));
+				}
+			}
+
+			return playlistEntity;
+		}
+
+		private Entity GenerateArtistEntity()
+		{
+			Entity artistEntity = new Entity() { Name = "Artists" };
+
+			var con = MPDConnection.GetInstance();
+			if (con.IsConnected())
+			{
+				List<MPDArtist> artistList = con.GetArtists();
+				foreach (var artist in artistList)
+				{
+					artistEntity.AddEntry(
+						new EntityEntry(artist.ArtistName, new string[] { artist.ArtistName }));
+				}
+			}
+
+			return artistEntity;
 		}
 	}
 }

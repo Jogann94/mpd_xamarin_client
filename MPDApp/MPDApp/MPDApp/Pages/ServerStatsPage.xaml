@@ -5,8 +5,33 @@
 						 Icon="chart_white.png"
 						 BackgroundColor="#191e1c">
 	<ContentPage.Content>
-        <StackLayout>
-            <Label Text="Placeholder stats" TextColor="White"/>
-        </StackLayout>
-    </ContentPage.Content>
+		<StackLayout Spacing="5" Padding="20, 5, 20, 0">
+			<StackLayout Spacing="0">
+				<Label Text="Number of Artists:" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+				<Label Text="{Binding Statistics.ArtistsCount}" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="Start"/>
+			</StackLayout>
+			<StackLayout Spacing="0">
+				<Label Text="Number of Albums:" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+				<Label Text="{Binding Statistics.AlbumCount}" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="Start"/>
+			</StackLayout>
+			<StackLayout Spacing="0">
+				<Label Text="Number of Tracks:" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+				<Label Text="{Binding Statistics.SongCount}" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="Start"/>
+			</StackLayout> 
+			<StackLayout Spacing="0">
+				<Label Text="Uptime of MPDServer" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+				<Label Text="{Binding Uptime}" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="Start"/>
+			</StackLayout>
+			<StackLayout Spacing="0">
+				<Label Text="Sum of Song Duration:" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+				<Label Text="{Binding AllSongDuration}" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="Start"/>
+			</StackLayout>
+			<StackLayout Spacing="0">
+				<Label Text="Last DB Update:" TextColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
+				<Label Text="{Binding LastDBUpdate}" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+				<Button BackgroundColor="Gray" HorizontalOptions="FillAndExpand" Clicked="UpdateButton_Clicked"
+								VerticalOptions="Start" Text="Update Database" TextColor="White"/>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>

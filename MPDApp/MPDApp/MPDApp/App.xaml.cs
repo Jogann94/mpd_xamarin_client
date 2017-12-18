@@ -22,16 +22,8 @@ namespace MPDApp
 			{
 				if (database == null)
 				{
-					try
-					{
 						database = new ServerProfileDatabase(
 							DependencyService.Get<IFileHelper>().GetLocalFilePath("ServerProfileSQLite.db3"));
-					}
-					catch
-					{
-						System.Diagnostics.Debug.WriteLine("No Database Class implemented");
-					}
-
 				}
 				return database;
 			}

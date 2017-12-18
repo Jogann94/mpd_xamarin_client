@@ -26,27 +26,27 @@ namespace MPDProtocol.MPDDataobjects
 
 	public class MPDStatistics
 	{
-		public int artistsCount;
-		public int albumCount;
-		public int songCount;
+		public int ArtistsCount { get; set; }
+		public int AlbumCount { get; set; }
+		public int SongCount { get; set; }
 
-		public int serverUptime;
-		public int allSongDuration;
+		public int ServerUptime { get; set; }
+		public int AllSongDuration { get; set; }
 
-		public long lastDBUpdate;
-		public int playDuration;
+		public long LastDBUpdate { get; set; }
+		public int PlayDuration { get; set; }
 
 		public MPDStatistics()
 		{
-			artistsCount = 0;
-			albumCount = 0;
-			songCount = 0;
+			ArtistsCount = 0;
+			AlbumCount = 0;
+			SongCount = 0;
 
-			serverUptime = 0;
-			allSongDuration = 0;
+			ServerUptime = 0;
+			AllSongDuration = 0;
 
-			lastDBUpdate = DateTimeOffset.Now.Ticks / TimeSpan.TicksPerMillisecond;
-			playDuration = 0;
+			LastDBUpdate = DateTimeOffset.Now.Ticks / TimeSpan.TicksPerMillisecond;
+			PlayDuration = 0;
 		}
 
 	}

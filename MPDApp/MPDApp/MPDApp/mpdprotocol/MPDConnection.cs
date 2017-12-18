@@ -1877,31 +1877,31 @@ namespace MPDProtocol
 						{
 							if (response.StartsWith(MPDResponses.MPD_STATS_UPTIME))
 							{
-								stats.serverUptime = int.Parse(response.Substring(MPDResponses.MPD_STATS_UPTIME.Length));
+								stats.ServerUptime = int.Parse(response.Substring(MPDResponses.MPD_STATS_UPTIME.Length));
 							}
 							else if (response.StartsWith(MPDResponses.MPD_STATS_PLAYTIME))
 							{
-								stats.playDuration = int.Parse(response.Substring(MPDResponses.MPD_STATS_PLAYTIME.Length));
+								stats.PlayDuration = int.Parse(response.Substring(MPDResponses.MPD_STATS_PLAYTIME.Length));
 							}
 							else if (response.StartsWith(MPDResponses.MPD_STATS_ARTISTS))
 							{
-								stats.artistsCount = int.Parse(response.Substring(MPDResponses.MPD_STATS_ARTISTS.Length));
+								stats.ArtistsCount = int.Parse(response.Substring(MPDResponses.MPD_STATS_ARTISTS.Length));
 							}
 							else if (response.StartsWith(MPDResponses.MPD_STATS_ALBUMS))
 							{
-								stats.albumCount = int.Parse(response.Substring(MPDResponses.MPD_STATS_ALBUMS.Length));
+								stats.AlbumCount = int.Parse(response.Substring(MPDResponses.MPD_STATS_ALBUMS.Length));
 							}
 							else if (response.StartsWith(MPDResponses.MPD_STATS_SONGS))
 							{
-								stats.songCount = int.Parse(response.Substring(MPDResponses.MPD_STATS_SONGS.Length));
+								stats.SongCount = int.Parse(response.Substring(MPDResponses.MPD_STATS_SONGS.Length));
 							}
 							else if (response.StartsWith(MPDResponses.MPD_STATS_DB_PLAYTIME))
 							{
-								stats.allSongDuration = int.Parse(response.Substring(MPDResponses.MPD_STATS_DB_PLAYTIME.Length));
+								stats.AllSongDuration = int.Parse(response.Substring(MPDResponses.MPD_STATS_DB_PLAYTIME.Length));
 							}
 							else if (response.StartsWith(MPDResponses.MPD_STATS_DB_LAST_UPDATE))
 							{
-								stats.lastDBUpdate = long.Parse(response.Substring(MPDResponses.MPD_STATS_DB_LAST_UPDATE.Length));
+								stats.LastDBUpdate = long.Parse(response.Substring(MPDResponses.MPD_STATS_DB_LAST_UPDATE.Length));
 							}
 
 							response = ReadLine(reader);

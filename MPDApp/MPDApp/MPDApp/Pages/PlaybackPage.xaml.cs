@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using MPDProtocol;
 using MPDProtocol.MPDDataobjects;
 using System.Windows.Input;
+using MPDApp.Converter;
 
 namespace MPDApp.Pages
 {
@@ -189,9 +190,9 @@ namespace MPDApp.Pages
 
 				PromilleElapsed = (double)status.ElapsedTime / (1000.0 * Status.CurrentTrackLength);
 				TracklengthString = (CurrentSong != null) ?
-					GenerateTimeString(CurrentSong.LengthInSeconds) : GenerateTimeString(Status.CurrentTrackLength);
+					TimeString.GenerateFromSeconds(CurrentSong.LengthInSeconds) : TimeString.GenerateFromSeconds(Status.CurrentTrackLength);
 
-				ElapsedTimeString = GenerateTimeString(Status.ElapsedTimeInSec);
+				ElapsedTimeString = TimeString.GenerateFromSeconds(Status.ElapsedTimeInSec);
 				
 			}
 
@@ -229,21 +230,6 @@ namespace MPDApp.Pages
 			else
 			{
 				return false;
-			}
-		}
-
-		private string GenerateTimeString(int seconds)
-		{
-			int remainingSeconds = seconds % 60;
-			int minutes = (seconds / 60) % 60;
-			int hours = (seconds / 60 / 60);
-			if (hours > 0)
-			{
-				return String.Format("{0:00}:{1:00}:{2:00}", hours, minutes, remainingSeconds);
-			}
-			else
-			{
-				return String.Format("{0:00}:{1:00}", minutes, remainingSeconds);
 			}
 		}
 

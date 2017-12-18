@@ -1,13 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+						 xmlns:controls="clr-namespace:MPDApp.Controls"
              x:Class="MPDApp.Pages.ServerOutputPage"
 						 Icon="hearing_white.png"
 						 BackgroundColor="#191e1c"
 						 >
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Placeholder server outputs" TextColor="White"/>
-        </StackLayout>
-    </ContentPage.Content>
+	<ContentPage.Content>
+		<StackLayout>
+			<ListView x:Name="OutputListView" RowHeight="45" ItemTapped="OutputItem_Tapped" ItemsSource="{Binding OutputList}"
+								SeparatorColor="White" SeparatorVisibility="Default" BackgroundColor="#191e1c">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout BackgroundColor="#191e1c" Orientation="Horizontal">
+								<controls:Toggle IsChecked="{Binding Active}" IsClickable="False" Grid.Column="0"
+																 HorizontalOptions="Start" VerticalOptions="Center"/>
+								<Label Text="{Binding OutputName}" TextColor="White" 
+										 VerticalOptions="Center" HorizontalOptions="FillAndExpand"/>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>

@@ -45,8 +45,8 @@ namespace MPDApp.Droid
 				voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 1500);
 				voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
 
-				voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
-
+				voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.English);
+				
 				var activity =  MainActivity.Instance;
 				activity.SpeechActivityResult += OnActivityResult;
 				activity.StartActivityForResult(voiceIntent, VOICE);
@@ -73,7 +73,7 @@ namespace MPDApp.Droid
 				return false;
 			}
 		}
-
+		
 		public void TextToSpeach(string text)
 		{
 			toSpeak = text;

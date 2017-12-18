@@ -11,7 +11,9 @@
 		<ToolbarItem Icon="library_add_white.png" Clicked="AddAll_Clicked"/>
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
+		
 		<StackLayout Margin="0, 15, 0, 0">
+			
 			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
 				<Label Text="Search Type:" FontSize="Medium" TextColor="White" VerticalOptions="Center"/>
 				<Picker x:Name="TypePicker" Title="Search Type" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
@@ -38,7 +40,6 @@
 									<Label Grid.Row="0" VerticalOptions="Center" TextColor="White" Text="{Binding TrackTitle}"/>
 									<Label Grid.Row="1" VerticalOptions="Center" TextColor="White" Text="{Binding TrackArtist}"/>
 								</Grid>
-
 							</StackLayout>
 						</ViewCell>
 					</DataTemplate>

@@ -25,20 +25,20 @@ namespace MPDProtocol.MPDDataobjects
 	public class MPDOutput : MPDGenericItem
 	{
 
-		public string outputName { get; private set; }
-		public bool active { get; set; }
-		public int outputId { get; private set; }
+		public string OutputName { get; private set; }
+		public bool Active { get; set; }
+		public int OutputId { get; private set; }
 
 		public MPDOutput(string name, bool enabled, int id)
 		{
-			outputName = name;
-			active = enabled;
-			outputId = id;
+			OutputName = name;
+			Active = enabled;
+			OutputId = id;
 		}
 
 		public string getSectionTitle()
 		{
-			return outputName;
+			return OutputName;
 		}
 
 	}
