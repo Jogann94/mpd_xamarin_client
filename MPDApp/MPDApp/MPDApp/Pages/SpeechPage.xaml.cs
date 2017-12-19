@@ -57,7 +57,7 @@ namespace MPDApp.Pages
 		{
 			if (!isRecording)
 			{
-				if(speechHelper == null)
+				if (speechHelper == null)
 				{
 					try
 					{
@@ -81,7 +81,7 @@ namespace MPDApp.Pages
 
 			if (text != string.Empty && text != null)
 			{
-				SpeechInput = text;
+				Device.BeginInvokeOnMainThread(() => { SpeechInput = text; });
 				Task.Factory.StartNew(async () =>
 				{
 					var response = await SendAIRequest(text);
@@ -95,6 +95,7 @@ namespace MPDApp.Pages
 			}
 			else
 			{
+				isRecording = false;
 				SpeechInput = "No Text recognized";
 			}
 		}
@@ -131,7 +132,7 @@ namespace MPDApp.Pages
 			req.entities.Add(GenerateArtistEntity());
 			var response = await entityService.PostEntity(req);
 			return response;
-		
+
 		}
 
 		private Entity GeneratePlaylistEntity()
