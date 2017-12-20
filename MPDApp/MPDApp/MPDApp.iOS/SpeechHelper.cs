@@ -7,6 +7,7 @@ using Speech;
 using Foundation;
 using Xamarin.Forms;
 using MPDApp.iOS;
+using UIKit;
 
 [assembly: Dependency(typeof(SpeechHelper))]
 namespace MPDApp.iOS
@@ -16,13 +17,41 @@ namespace MPDApp.iOS
 		public event Action<string> Recorded;
 
 		private AVAudioEngine audioEngine = new AVAudioEngine();
-		private SFSpeechRecognizer speechRecognizer = new SFSpeechRecognizer();
+		private SFSpeechRecognizer speechRecognizer;
 		private SFSpeechAudioBufferRecognitionRequest liveSpeechRequest
 			= new SFSpeechAudioBufferRecognitionRequest();
 		private SFSpeechRecognitionTask RecognitionTask;
 
 		public void RecordSpeachToText()
 		{
+			if (SFSpeechRecognizer.AuthorizationStatus == SFSpeechRecognizerAuthorizationStatus.Authorized)
+			{
+				StartSpeechRecognizer();
+			}
+			else
+			{
+				SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) =>
+				{
+					if (status == SFSpeechRecognizerAuthorizationStatus.Authorized)
+					{
+						StartSpeechRecognizer();
+					}
+					else // No Permission to recognize Speech
+					{
+						var alert = UIAlertController.Create("No Permission",
+							"Permission for Audio Recording denied", UIAlertControllerStyle.Alert);
+						alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Cancel, null));
+						UIApplication.SharedApplication.KeyWindow
+							.RootViewController.PresentViewController(alert, true, null);
+					}
+				});
+			}
+
+		}
+
+		private void StartSpeechRecognizer()
+		{
+			speechRecognizer = new SFSpeechRecognizer();
 			var node = audioEngine.InputNode;
 			var recordingFormat = node.GetBusOutputFormat(0);
 			node.InstallTapOnBus(0, 1024, recordingFormat,
