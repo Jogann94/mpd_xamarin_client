@@ -85,6 +85,7 @@ namespace MPDApp.Pages
 				Task.Factory.StartNew(async () =>
 				{
 					var response = await SendAIRequest(text);
+
 					if (response != null)
 					{
 						AIFullfillment fullfillment = new AIFullfillment(response);
@@ -95,8 +96,7 @@ namespace MPDApp.Pages
 			}
 			else
 			{
-				isRecording = false;
-				SpeechInput = "No Text recognized";
+				Device.BeginInvokeOnMainThread(() => { SpeechInput = "No Text recognized"; });
 			}
 		}
 
@@ -105,8 +105,10 @@ namespace MPDApp.Pages
 			if (ai == null)
 			{
 				ai = new ApiAi(App.AIConfig);
+				var res = await ConfigureAIEntities();
 				var response = ai.TextRequest("HI");
 				App.AIConfig.SessionId = response.SessionId;
+
 				await ConfigureAIEntities();
 
 			}

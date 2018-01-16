@@ -8,6 +8,7 @@ using Foundation;
 using Xamarin.Forms;
 using MPDApp.iOS;
 using UIKit;
+using System.Timers;
 
 [assembly: Dependency(typeof(SpeechHelper))]
 namespace MPDApp.iOS
@@ -16,17 +17,21 @@ namespace MPDApp.iOS
 	{
 		public event Action<string> Recorded;
 
+		private bool recording = false;
 		private AVAudioEngine audioEngine = new AVAudioEngine();
 		private SFSpeechRecognizer speechRecognizer;
-		private SFSpeechAudioBufferRecognitionRequest liveSpeechRequest
-			= new SFSpeechAudioBufferRecognitionRequest();
+		private SFSpeechAudioBufferRecognitionRequest liveSpeechRequest;
+		private AVAudioInputNode node;
+		private string lastSpokenString;
 		private SFSpeechRecognitionTask RecognitionTask;
 
 		public void RecordSpeachToText()
 		{
+
 			if (SFSpeechRecognizer.AuthorizationStatus == SFSpeechRecognizerAuthorizationStatus.Authorized)
 			{
 				StartSpeechRecognizer();
+
 			}
 			else
 			{
@@ -51,38 +56,53 @@ namespace MPDApp.iOS
 
 		private void StartSpeechRecognizer()
 		{
-			speechRecognizer = new SFSpeechRecognizer();
-			var node = audioEngine.InputNode;
-			var recordingFormat = node.GetBusOutputFormat(0);
-			node.InstallTapOnBus(0, 1024, recordingFormat,
-				(AVAudioPcmBuffer buffer, AVAudioTime when) =>
-				{
-					liveSpeechRequest.Append(buffer);
-				});
 
-			audioEngine.Prepare();
-			audioEngine.StartAndReturnError(out NSError error);
 
-			if (error != null)
+			if (!recording)
 			{
-				return;
-			}
+				speechRecognizer = new SFSpeechRecognizer();
+				node = audioEngine.InputNode;
+				var recordingFormat = node.GetBusOutputFormat(0);
+				liveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
 
-			RecognitionTask = speechRecognizer.GetRecognitionTask(liveSpeechRequest,
-				(SFSpeechRecognitionResult result, NSError err) =>
+				node.InstallTapOnBus(0, 1024, recordingFormat,
+					(AVAudioPcmBuffer buffer, AVAudioTime when) =>
+					{
+						liveSpeechRequest.Append(buffer);
+					});
+				recording = true;
+
+				audioEngine.Prepare();
+				audioEngine.StartAndReturnError(out NSError error);
+				if (error != null)
 				{
-					if (error != null)
+					return;
+				}
+
+				Timer timer = new Timer(2000);
+				timer.Start();
+				timer.Elapsed += EndRecognition;
+				RecognitionTask = speechRecognizer.GetRecognitionTask(liveSpeechRequest,
+					(SFSpeechRecognitionResult result, NSError err) =>
 					{
-						return;
-					}
-					else
-					{
-						if (result.Final)
+						if (err != null)
 						{
-							Recorded?.Invoke(result.BestTranscription.FormattedString);
+							Recorded?.Invoke("");
+							return;
 						}
-					}
-				});
+						else
+						{
+							lastSpokenString = result.BestTranscription.FormattedString;
+							timer.Stop();
+							timer.Interval = 2000;
+							timer.Start();
+						}
+					});
+			}
+			else
+			{
+				Recorded?.Invoke("");
+			}
 		}
 
 		public void TextToSpeach(string text)
@@ -98,5 +118,16 @@ namespace MPDApp.iOS
 
 			speechSynthesizer.SpeakUtterance(speechUtterance);
 		}
+
+		private void EndRecognition(object sender, ElapsedEventArgs e)
+		{
+			node.RemoveTapOnBus(0);
+			audioEngine.Stop();
+			liveSpeechRequest.EndAudio();
+			RecognitionTask.Cancel();
+			recording = false;
+			Recorded?.Invoke(lastSpokenString);
+		}
 	}
+
 }

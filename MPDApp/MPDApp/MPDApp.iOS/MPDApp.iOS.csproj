@@ -114,7 +114,9 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="SpeechHelper.cs" />
     <None Include="Entitlements.plist" />
-    <None Include="Info.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
@@ -187,393 +189,523 @@
   <ItemGroup>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\add_white.imageset\add_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\add_white.imageset\add_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\add_white.imageset\add_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\add_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\album_white.imageset\album_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\album_white.imageset\album_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\album_white.imageset\album_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\album_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\App-Symbole.appiconset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\chart_white.imageset\chart_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\chart_white.imageset\chart_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\chart_white.imageset\chart_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\chart_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\check_white.imageset\check_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\check_white.imageset\check_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\check_white.imageset\check_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\check_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\dvr_blue.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\dvr_blue.imageset\dvr_blue.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\dvr_blue.imageset\dvr_blue@2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\dvr_blue.imageset\dvr_blue@3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\dvr_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\dvr_white.imageset\dvr_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\dvr_white.imageset\dvr_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\dvr_white.imageset\dvr_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\folder_blue.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\folder_blue.imageset\folder_blue.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\folder_blue.imageset\folder_blue@2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\folder_blue.imageset\folder_blue@3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\folder_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\folder_white.imageset\folder_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\folder_white.imageset\folder_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\folder_white.imageset\folder_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\hearing_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\hearing_white.imageset\hearing_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\hearing_white.imageset\hearing_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\hearing_white.imageset\hearing_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\insert_file_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\insert_file_white.imageset\insert_file_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\insert_file_white.imageset\insert_file_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\insert_file_white.imageset\insert_file_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\interpret_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\interpret_white.imageset\interpret_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\interpret_white.imageset\interpret_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\interpret_white.imageset\interpret_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_add_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_add_white.imageset\library_add_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_add_white.imageset\library_add_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_add_white.imageset\library_add_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_music_blue.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_music_blue.imageset\library_music_blue.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_music_blue.imageset\library_music_blue@2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_music_blue.imageset\library_music_blue@3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_music_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_music_white.imageset\library_music_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_music_white.imageset\library_music_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\library_music_white.imageset\library_music_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\more_vert_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\more_vert_white.imageset\more_vert_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\more_vert_white.imageset\more_vert_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\more_vert_white.imageset\more_vert_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\play_arrow_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\play_arrow_white.imageset\play_arrow_white_.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\play_arrow_white.imageset\play_arrow_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\play_arrow_white.imageset\play_arrow_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\queue_music_blue.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\queue_music_blue.imageset\queue_music_blue.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\queue_music_blue.imageset\queue_music_blue@2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\queue_music_blue.imageset\queue_music_blue@3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\queue_music_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\queue_music_white.imageset\queue_music_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\queue_music_white.imageset\queue_music_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\queue_music_white.imageset\queue_music_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\repeat_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\repeat_white.imageset\repeat_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\repeat_white.imageset\repeat_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\repeat_white.imageset\repeat_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\search_blue.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\search_blue.imageset\search_blue.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\search_blue.imageset\search_blue@2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\search_blue.imageset\search_blue@3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\search_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\search_white.imageset\search_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\search_white.imageset\search_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\search_white.imageset\search_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_input_antenna_blue.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_input_antenna_blue.imageset\settings_input_antenna_blue.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_input_antenna_blue.imageset\settings_input_antenna_blue@2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_input_antenna_blue.imageset\settings_input_antenna_blue@3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_input_antenna_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_input_antenna_white.imageset\settings_input_antenna_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_input_antenna_white.imageset\settings_input_antenna_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_input_antenna_white.imageset\settings_input_antenna_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_white.imageset\settings_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_white.imageset\settings_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\settings_white.imageset\settings_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\shuffle_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\shuffle_white.imageset\shuffle_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\shuffle_white.imageset\shuffle_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\shuffle_white.imageset\shuffle_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\skip_next_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\skip_next_white.imageset\skip_next_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\skip_next_white.imageset\skip_next_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\skip_next_white.imageset\skip_next_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\skip_previous_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\skip_previous_white.imageset\skip_previous_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\skip_previous_white.imageset\skip_previous_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\skip_previous_white.imageset\skip_previous_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\Startbilder.launchimage\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\stop_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\stop_white.imageset\stop_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\stop_white.imageset\stop_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\stop_white.imageset\stop_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\voice_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\voice_white.imageset\voice_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\voice_white.imageset\voice_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\voice_white.imageset\voice_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_down_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_down_white.imageset\volume_down_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_down_white.imageset\volume_down_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_down_white.imageset\volume_down_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_off_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_off_white.imageset\volume_off_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_off_white.imageset\volume_off_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_off_white.imageset\volume_off_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_up_white.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_up_white.imageset\volume_up_white.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_up_white.imageset\volume_up_white_2x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MaterialIcons.xcassets\volume_up_white.imageset\volume_up_white_3x.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

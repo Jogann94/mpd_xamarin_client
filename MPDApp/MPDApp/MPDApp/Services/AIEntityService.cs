@@ -21,7 +21,7 @@ namespace MPDApp.Services
 		{
 			this.sessionID = config.SessionId;
 			protocolVersion = config.ProtocolVersion;
-
+			
 			client = new HttpClient();
 			client.DefaultRequestHeaders.Authorization =
 				new AuthenticationHeaderValue("Bearer", config.ClientAccessToken);
